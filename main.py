@@ -18,7 +18,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-	cursor = conn.cursor()
-	#cursor.execute("SELECT * FROM Users")
-	#users = cursor.fetchall()
+    cursor = conn.cursor()
+    #cursor.execute("SELECT * FROM Users")
+    #users = cursor.fetchall()
     return 'Connected!'
