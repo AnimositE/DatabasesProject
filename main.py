@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, send_from_directory
+"""import urlparse
 import psycopg2
-import urlparse
 
 urlparse.uses_netloc.append("postgres")
 url = urlparse.urlparse(os.environ["DATABASE_URL"])
@@ -12,14 +12,15 @@ conn = psycopg2.connect(
     password=url.password,
     host=url.hostname,
     port=url.port
-)
+)"""
 
 app = Flask(__name__)
 app.config.update(DEBUG = True,)
 
 @app.route('/')
+@app.route('/index/')
 def index():
-    cursor = conn.cursor()
+    #cursor = conn.cursor()
     #cursor.execute("SELECT * FROM Users")
     #users = cursor.fetchall()
     return render_template('index.html')
