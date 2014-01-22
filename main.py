@@ -21,9 +21,9 @@ app.config.update(DEBUG = True,)
 @app.route('/index/')
 def index():
     #cursor = conn.cursor()
-    #cursor.execute("SELECT * FROM Users")
+    #cursor.execute("SELECT * FROM Diver")
     #users = cursor.fetchall()
-    return render_template('index.html')
+    return render_template('divers.html')
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
