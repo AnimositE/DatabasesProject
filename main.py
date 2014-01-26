@@ -1,40 +1,30 @@
 import os
 from flask import Flask, render_template, send_from_directory
-"""import urlparse
-import psycopg2
-
-urlparse.uses_netloc.append("postgres")
-url = urlparse.urlparse(os.environ["DATABASE_URL"])
-
-conn = psycopg2.connect(
-    database=url.path[1:],
-    user=url.username,
-    password=url.password,
-    host=url.hostname,
-    port=url.port
-)"""
+#import database
 
 app = Flask(__name__)
 app.config.update(DEBUG = True,)
 
+#db = Database()
+
 @app.route('/')
 @app.route('/index/')
 def index():
-    #cursor = conn.cursor()
-    #cursor.execute("SELECT * FROM Diver")
-    #users = cursor.fetchall()
     return render_template('home.html')
 
 @app.route('/divers/')
 def divers():
+    #divers = db.getDivers()
     return render_template('divers.html')
 
 @app.route('/meets/')
 def meets():
+    #meets = db.getMeets()
     return render_template('meets.html')
 
 @app.route('/dd/')
 def ddLookup():
+    #dives = db.getDives()
     return "no html yet"
 
 if __name__ == "__main__":
