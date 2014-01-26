@@ -31,7 +31,7 @@ def divers():
 
 @app.route('/meets/')
 def meets():
-    return "no html yet"
+    return render_template('meets.html')
 
 @app.route('/dd/')
 def ddLookup():
