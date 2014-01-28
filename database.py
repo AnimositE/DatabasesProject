@@ -1,6 +1,6 @@
 import urlparse
 import psycopg2
-
+import os
 
 class Database:
 
