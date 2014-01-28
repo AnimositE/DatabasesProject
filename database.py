@@ -19,17 +19,17 @@ class Database:
 
     def getDivers(self):
         self.cursor.execute("SELECT * FROM Divers;")
-        return cursor.fetchall()
+        return self.cursor.fetchall()
 
     def getMeets(self):
         self.cursor.execute("SELECT * FROM Meets;")
-        return cursor.fetchall()
+        return self.cursor.fetchall()
 
     def getDives(self):
         self.cursor.execute("SELECT * FROM Dives;")
-        return cursor.fetchall()
+        return self.cursor.fetchall()
 
     def login(self, email, password):
     	self.cursor.execute("SELECT * FROM Divers \
     						WHERE email=%s AND hashpass=%s;",[email,password])
-    	return cursor.fetchall()
+    	return self.cursor.fetchall()
