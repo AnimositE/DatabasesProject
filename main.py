@@ -1,7 +1,7 @@
 import os
 import hashlib
 from flask import Flask, render_template, send_from_directory, request, session
-import database
+from database import Database
 
 db = Database()
 
