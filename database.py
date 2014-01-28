@@ -20,19 +20,19 @@ class Database:
         )
         cursor = conn.cursor()
 
-    def getDivers():
+    def getDivers(self):
         cursor.execute("SELECT * FROM Divers;")
         return cursor.fetchall()
 
-    def getMeets():
+    def getMeets(self):
         cursor.execute("SELECT * FROM Meets;")
         return cursor.fetchall()
 
-    def getDives():
+    def getDives(self):
         cursor.execute("SELECT * FROM Dives;")
         return cursor.fetchall()
 
-    def login(email, password):
+    def login(self, email, password):
     	cursor.execute("SELECT * FROM Divers \
     						WHERE email=%s AND hashpass=%s;",[email,password])
     	return cursor.fetchall()
