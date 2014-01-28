@@ -1,13 +1,13 @@
 import os
 import hashlib
 from flask import Flask, render_template, send_from_directory, request, session
-from database import Database
+#from database import Database
 
-db = Database()
+#db = Database()
 
 app = Flask(__name__)
 app.config.update(DEBUG = True,)
-app.secret_key = 'A0Zz98j/3yX R~XHH!?1N]LWX/,?RT'
+app.secret_key = 'A0Zz98j/3yX R~XHH!?1N]LWX/,?RT'  #Temp secret
 
 
 @app.route('/')
@@ -34,7 +34,8 @@ def ddLookup():
 def login():
     email = request.form['email']
     password = hashlib.sha1(request.form['pass']).hexdigest()
-    response = db.login(email,password)
+    #response = db.login(email,password)
+    response = [(1)]
     if len(response) == 0:
         return "Failed to login"
     else:

@@ -30,6 +30,6 @@ class Database:
         return self.cursor.fetchall()
 
     def login(self, email, password):
-    	self.cursor.execute("SELECT * FROM Divers \
+    	self.cursor.execute("SELECT id FROM Divers \
     						WHERE email=%s AND hashpass=%s;",[email,password])
     	return self.cursor.fetchall()
