@@ -1,11 +1,14 @@
 import os
-from flask import Flask, render_template, send_from_directory
-#import database
+import hashlib
+from flask import Flask, render_template, send_from_directory, request, session
+import database
+
+db = Database()
 
 app = Flask(__name__)
 app.config.update(DEBUG = True,)
+app.secret_key = 'A0Zz98j/3yX R~XHH!?1N]LWX/,?RT'
 
-#db = Database()
 
 @app.route('/')
 @app.route('/index/')
@@ -26,6 +29,19 @@ def meets():
 def ddLookup():
     #dives = db.getDives()
     return "no html yet"
+
+@app.route('/login/',methods=['POST'])
+def login():
+    email = request.form['email']
+    password = hashlib.sha1(request.form['pass']).hexdigest()
+    response = db.login(email,password)
+    if len(response) = 0:
+        return "Failed to login"
+    else:
+        session['id'] = response[0][0]
+        return "Logged in"
+
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
