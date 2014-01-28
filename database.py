@@ -15,7 +15,7 @@ class Database:
             host=url.hostname,
             port=url.port
         )
-        self.cursor = conn.cursor()
+        self.cursor = self.conn.cursor()
 
     def getDivers(self):
         self.cursor.execute("SELECT * FROM Divers;")
