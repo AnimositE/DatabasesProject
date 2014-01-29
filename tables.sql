@@ -1,5 +1,26 @@
 CREATE TABLE Divers (
-	id serial PRIMARY KEY,
-	email VARCHAR(100) not null,
-	hashpass CHAR(40) not null
+	id SERIAL PRIMARY KEY,
+	email VARCHAR(100) NOT NULL,
+	hashpass CHAR(40) NOT NULL
+);
+
+CREATE TABLE Schools (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(100) NOT NULL,
+	division INT NOT NULL
+);
+
+CREATE TABLE DiveSheets (
+	id SERIAL PRIMARY KEY,
+	diverID INT REFERENCES Divers(id) ON DELETE CASCADE,
+	meetID INT NULL, 
+	finalScore NUMERIC(12,6) NULL
+);
+
+CREATE TABLE Profiles (
+	diverID INT REFERENCES Divers(id) ON DELETE CASCADE,
+	fName VARCHAR(50) NULL,
+	lName VARCHAR(50) NULL,
+	age INT NULL,
+	favoriteDive INT NULL
 );
