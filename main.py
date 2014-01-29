@@ -35,7 +35,7 @@ def login():
     email = request.form['email']
     password = hashlib.sha1(request.form['pass']).hexdigest()
     #response = db.login(email,password)
-    response = [(1)]
+    response = [(1,),]
     if len(response) == 0:
         return "Failed to login"
     else:
