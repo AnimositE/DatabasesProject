@@ -28,7 +28,7 @@ def meets():
 @app.route('/dd/')
 def ddLookup():
     #dives = db.getDives()
-    return "no html yet"
+    return render_template('ddlookup.html')
 
 @app.route('/login/',methods=['POST'])
 def login():
