@@ -28,8 +28,8 @@
         </div>
         <div class="navbar-collapse collapse" style>
           <ul class="nav navbar-nav">
-            <li class="active">
-              <a href="/index/">Home&nbsp;<i class="fa fa-home"></i></a>
+            <li>
+              <a>Home&nbsp;<i class="fa fa-home"></i></a>
             </li>
             <li>
               <a href="/dd/">DD Lookup&nbsp;<i class="fa fa-list-alt"></i></a>
@@ -37,8 +37,8 @@
             <li>
               <a href="/divers/">Divers&nbsp;<i class="fa fa-user"></i></a>
             </li>
-            <li>
-              <a href="/meets/">Meets&nbsp;<i class="fa fa-calendar"></i></a>
+            <li class="active">
+              <a>Meets&nbsp;<i class="fa fa-calendar"></i></a>
             </li>
           </ul>{% if 'id' not in session %}
           <form method="POST" action="/login/" class="navbar-form navbar-right">
@@ -80,18 +80,37 @@
       <!-- Example row of columns -->
       <form>
         <label class="form-label">Email</label>
-        <h1>Register</h1>
-        <input type="text" class="form-control">
+        <h1>Rose-Hulman Dive Meet</h1>
       </form>
-      <form>
-        <label class="form-label">Password</label>
-        <input type="text" class="form-control">
-      </form>
-      <form>
-        <label class="form-label">Confirm Password</label>
-        <input type="text" class="form-control">
-      </form>
-      <a class="btn btn-primary">Register</a><hr>
+      <ul class="list-group">
+        <li class="list-group-item">State: Indiana</li>
+        <li class="list-group-item">City: Terre Haute</li>
+        <li class="list-group-item">Zip: 47025</li>
+        <li class="list-group-item">Address: 5500 Wabash Ave</li>
+        <li class="list-group-item">Date: 2/22/2014</li>
+      </ul>
+      <div class="btn-group">
+        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Sign Up&nbsp;<span class="caret"></span>  </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#">Use existing Dive Sheet</a>
+          </li>
+          <li>
+            <a href="#">Create new Dive Sheet</a>
+          </li>
+        </ul>
+      </div>
+      <div class="btn-group">
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#">First Link</a>
+          </li>
+          <li>
+            <a href="#">Second Link</a>
+          </li>
+        </ul>
+      </div>
+      <hr>
       <footer>
         <p>&copy; Company 2013</p>
       </footer>
