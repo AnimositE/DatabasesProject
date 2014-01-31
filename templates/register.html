@@ -78,18 +78,22 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="container">
       <!-- Example row of columns -->
-      <form action="/register/" method="POST">
-        <label class="form-label">Email</label>
-        <h1>Register</h1>
-        <input type="text" class="form-control">
-      </form>
+      <h1 class="page-header">Register</h1>
       <form>
-        <label class="form-label">Password</label>
-        <input type="text" class="form-control">
-      </form>
-      <form>
-        <label class="form-label">Confirm Password</label>
-        <input type="text" class="form-control">
+        <div class="form-group">
+          <label class="control-label">Email</label>
+          <div class="controls">
+            <input type="text" name="email" class="form-control" placeholder="example@divers.com">
+          </div>
+          <label class="control-label">Password</label>
+          <div class="controls">
+            <input type="password" name="pass" class="form-control">
+          </div>
+          <label class="control-label">Confirm Password</label>
+          <div class="controls">
+            <input type="password" name="conf" class="form-control">
+          </div>
+        </div>
       </form>
       <a class="btn btn-primary">Register</a><hr>
       <footer>
