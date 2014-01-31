@@ -1,0 +1,102 @@
+<!doctype html>
+
+<html>
+  
+  <head>
+    <title>DiveBook</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <style type="text/css">
+      body {
+        padding-top: 50px;
+        padding-bottom: 20px;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/index/">DiveBook</a>
+        </div>
+        <div class="navbar-collapse collapse" style>
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="/index/">Home&nbsp;<i class="fa fa-home"></i></a>
+            </li>
+            <li>
+              <a href="/dd/">DD Lookup&nbsp;<i class="fa fa-list-alt"></i></a>
+            </li>
+            <li>
+              <a href="/divers/">Divers&nbsp;<i class="fa fa-user"></i></a>
+            </li>
+            <li>
+              <a href="/meets/">Meets&nbsp;<i class="fa fa-calendar"></i></a>
+            </li>
+          </ul>{% if 'id' not in session %}
+          <form method="POST" action="/login/" class="navbar-form navbar-right">
+            <div class="form-group">
+              <input placeholder="Email" name="email" class="form-control" type="text">
+            </div>
+            <div class="form-group">
+              <input placeholder="Password" name="pass" class="form-control" type="password">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+            <a class="btn btn-info" href="/register/">Sign up</a>
+          </form>{% else %}
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="#">Manage Profile</a>
+                </li>
+                <li>
+                  <a href="#">Manage Dives</a>
+                </li>
+                <li>
+                  <a href="#">Manage Dive Sheets</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#">Log out</a>
+                </li>
+              </ul>
+            </li>
+          </ul>{% endif %}
+        </div>
+        <!--/.navbar-collapse -->
+      </div>
+    </div>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="container">
+      <!-- Example row of columns -->
+      <form>
+        <label class="form-label">Email</label>
+        <h1>Register</h1>
+        <input type="text" class="form-control">
+      </form>
+      <form>
+        <label class="form-label">Password</label>
+        <input type="text" class="form-control">
+      </form>
+      <form>
+        <label class="form-label">Confirm Password</label>
+        <input type="text" class="form-control">
+      </form>
+      <a class="btn btn-primary">Register</a><hr>
+      <footer>
+        <p>&copy; Company 2013</p>
+      </footer>
+    </div>
+    <!-- /container -->
+  </body>
+
+</html>
