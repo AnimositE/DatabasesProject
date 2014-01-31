@@ -57,15 +57,22 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Manage Profile</a></li>
-                <li><a href="#">Manage Dives</a></li>
-                <li><a href="#">Manage Dive Sheets</a></li>
+                <li>
+                  <a href="/profile/">Manage Profile</a>
+                </li>
+                <li>
+                  <a href="/dives/">Manage Dives</a>
+                </li>
+                <li>
+                  <a href="/divesheets/">Manage Dive Sheets</a>
+                </li>
                 <li class="divider"></li>
-                <li><a href="#">Log out</a></li>
+                <li>
+                  <a href="/logout">Log out</a>
+                </li>
               </ul>
             </li>
-          </ul>
-          {% endif %}
+          </ul>{% endif %}
         </div>
         <!--/.navbar-collapse -->
       </div>
@@ -85,14 +92,14 @@
         <tbody>
           <tr>
             <td>
-              <a href="/meet/">Rose-Hulman Dive Meet</a>
+              <a href="/meets/1">Rose-Hulman Dive Meet</a>
             </td>
             <td>IN</td>
             <td>02/22/2014</td>
           </tr>
           <tr>
             <td>
-              <a href="/meet/">ISU Dive Meet</a>
+              <a href="/meets/2">ISU Dive Meet</a>
             </td>
             <td>IN</td>
             <td>03/15/2014</td>

@@ -1,6 +1,6 @@
 import os
 import hashlib
-from flask import Flask, render_template, send_from_directory, request, session
+from flask import Flask, render_template, send_from_directory, request, session, redirect, url_for
 #from database import Database
 
 #db = Database()
@@ -30,6 +30,26 @@ def ddLookup():
     #dives = db.getDives()
     return render_template('ddlookup.html')
 
+@app.route('/register/',methods=['GET','POST'])
+def register():
+    message = ""
+    if request.method == 'POST':
+        if request.form['email'] and request.form['pass'] and request.form['conf']:
+            if request.form['pass'] == request.form['conf']:
+                email = request.form['email']
+                password = hashlib.sha1(request.form['pass']).hexdigest()
+                registered = True
+                #registered = db.register(email, password)
+                if registered:
+                    login()
+                else:
+                    message = "Email already registered"
+            else:
+                message = "Passwords do not match"
+        else:
+            message = "No field can be left empty"
+    return render_template('register.html',message=message)
+
 @app.route('/login/',methods=['POST'])
 def login():
     email = request.form['email']
@@ -37,12 +57,15 @@ def login():
     #response = db.login(email,password)
     response = [(1,),]
     if len(response) == 0:
-        return "Failed to login"
+        return redirect(url_for('index'))
     else:
         session['id'] = response[0][0]
-        return "Logged in"
+        return redirect(url_for('index'))
 
-
+@app.route('/logout')
+def logout():
+    session.pop('id', None)
+    return redirect(url_for('index'))
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
