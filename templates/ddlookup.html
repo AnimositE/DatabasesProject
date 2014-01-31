@@ -58,6 +58,7 @@
     <div class="container">
       <h1 class="page-header">DD Lookup<br></h1>
       <div class="row">
+        <form method="POST" action="/dd/">
         <div class="col-md-3">
           <div class="panel panel-default">
             <div class="panel-heading">Select Height
@@ -66,7 +67,7 @@
               <br>
               <select class="form-control">
                 <option>1 metre</option>
-                <option>3metre</option>
+                <option>3 metre</option>
               </select>
             </div>
           </div>
@@ -139,8 +140,8 @@
       </div>
       <div class="row">
         <div class="col-md-3">
-          <a class="btn btn-primary btn-block">Click to Find DD</a>
-        </div>
+          <button type="submit" class="btn btn-primary btn-block">Click to Find DD</button>
+        </div></form>
         <div class="col-md-9">
           <div class="panel panel-default">
             <div class="panel-heading">The DD of 101A Forward Dive Straight on 1 metre board is:
