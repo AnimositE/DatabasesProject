@@ -82,39 +82,44 @@
       <h1 class="page-header">Registered Divers<br></h1>
       <div class="row">
         <div class="col-md-7">
-          <ul class="list-group">
-            <li class="list-group-item">
-              <a href="#">First Item</a>
-            </li>
-            <li class="list-group-item">
-              <a href="#">Second Item</a>
-            </li>
-            <li class="list-group-item">
-              <a href="#">Third Item</a>
-            </li>
-          </ul>
+          <table class="table table-striped table-hover table-bordered">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>School</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for diver in divers %}
+              <tr>
+                <td><a href="/profile/{{ diver[0] }}">{{ diver[1] }}</a></td>
+                <td>{{ diver[2] }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
         </div>
         <div class="col-md-5">
-          <form>
+          <form method="post" action="/divers/">
             <div class="form-group">
               <label class="control-label">First Name</label>
               <div class="controls">
-                <input class="form-control" type="text">
+                <input name="first" class="form-control" type="text">
               </div>
             </div>
             <div class="form-group">
               <label class="control-label">Last Name</label>
               <div class="controls">
-                <input class="form-control" type="text">
+                <input name="last" class="form-control" type="text">
               </div>
             </div>
             <div class="form-group">
               <label class="control-label">School</label>
               <div class="controls">
-                <input class="form-control" type="text">
+                <input name="school" class="form-control" type="text">
               </div>
             </div>
-            <a class="btn btn-primary">Search</a>
+            <button type="submit" class="btn btn-primary">Search</button>
           </form>
         </div>
       </div>

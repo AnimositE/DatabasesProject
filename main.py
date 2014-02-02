@@ -15,20 +15,56 @@ app.secret_key = 'A0Zz98j/3yX R~XHH!?1N]LWX/,?RT'  #Temp secret
 def index():
     return render_template('home.html')
 
+
+# Divers ------------------------------------------------------------------------------
+
 @app.route('/divers/')
 def divers():
+    divers = [[1,'Mason Schneider','Rose-Hulman'],[2,'Mark Hein','Rose-Hulman']]
     #divers = db.getDivers()
+    return render_template('divers.html',divers=divers)
+
+@app.route('/divers/',methods=['POST'])
+def searchDivers():
+    #TODO: Search for divers given post data
     return render_template('divers.html')
+
+@app.route('/profile/<int:id>')
+def profile(id):
+    #TODO: Generate profile page from diver id
+    return 'Needs html'
+
+# -------------------------------------------------------------------------------------+
+
+# Meet viewing and registration --------------------------------------------------------
 
 @app.route('/meets/')
 def meets():
-    #meets = db.getMeets()
-    return render_template('meets.html')
+    upcoming = [[1,'Rose-Hulman','IN','2014-02-19'],]
+    past = [[2,'ISU','IN','2014-01-19'],]
+    #upcoming = db.getUpcomingMeets()
+    #past = db.getPastMeets()
+    return render_template('meets.html',upcoming=upcoming,past=past)
+
+@app.route('/meets/<int:id>')
+def meet(id):
+    #TODO: Pull meet info and populate page
+    return render_template('meet.html')
+
+@app.route('/meets/<int:id>/sheet/<int:sheetid>')
+def registerMeet(id, sheetid):
+    #TODO: Register a sheet
+    return "needs html" 
+
+# --------------------------------------------------------------------------------------+
 
 @app.route('/dd/')
 def ddLookup():
     #dives = db.getDives()
     return render_template('ddlookup.html')
+
+
+#  Diver registration and logging ---------------------------------------------------------
 
 @app.route('/register/',methods=['GET','POST'])
 def register():
@@ -50,6 +86,7 @@ def register():
             message = "No field can be left empty"
     return render_template('register.html',message=message)
 
+
 @app.route('/login/',methods=['POST'])
 def login():
     email = request.form['email']
@@ -66,6 +103,8 @@ def login():
 def logout():
     session.pop('id', None)
     return redirect(url_for('index'))
+
+#--------------------------------------------------------------------------------------------+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

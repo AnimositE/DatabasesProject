@@ -90,20 +90,37 @@
           </tr>
         </thead>
         <tbody>
+          {% for meet in upcoming %}
           <tr>
             <td>
-              <a href="/meets/1">Rose-Hulman Dive Meet</a>
+              <a href="/meets/{{ meet[0]|striptags }}">{{meet[1]|striptags}}</a>
             </td>
-            <td>IN</td>
-            <td>02/22/2014</td>
+            <td>{{meet[2]|striptags}}</td>
+            <td>{{meet[3]|striptags}}</td>
           </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <h1 class="page-header">Previous Meets<br></h1>
+      <!-- Example row of columns -->
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Meet</th>
+            <th>State</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for meet in past %}
           <tr>
             <td>
-              <a href="/meets/2">ISU Dive Meet</a>
+              <a href="/meets/{{ meet[0]|striptags }}">{{meet[1]|striptags}}</a>
             </td>
-            <td>IN</td>
-            <td>03/15/2014</td>
+            <td>{{meet[2]|striptags}}</td>
+            <td>{{meet[3]|striptags}}</td>
           </tr>
+          {% endfor %}
         </tbody>
       </table>
       <hr>
