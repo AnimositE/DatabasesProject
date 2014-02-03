@@ -17,9 +17,26 @@ class Database:
         )
         self.cursor = self.conn.cursor()
 
+    # DIVERS ------------------------------------------------------------------------
+
     def getDivers(self):
         self.cursor.execute("SELECT * FROM Divers;")
         return self.cursor.fetchall()
+
+    def getDiverProfile(self, diverid):
+    	self.cursor.execute("SELECT email, fName, lName, age, favoriteDive FROM Divers JOIN Profiles ON id = diverID WHERE id = %s",[diverid])
+    	return self.cursor.fetchall()
+
+    # -------------------------------------------------------------------------------
+
+    # DIVESHEETS --------------------------------------------------------------------
+
+    def getDiveSheets(self, diverid):
+    	self.cursor.execute("SELECT * FROM DiveSheets WHERE diverID=%s",[diverid])
+    	return self.cursor.fetchall()
+
+
+    # -------------------------------------------------------------------------------
 
     # MEETS --------------------------------------------------------------------------
 
