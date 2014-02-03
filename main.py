@@ -32,7 +32,14 @@ def searchDivers():
 @app.route('/profile/<int:id>')
 def profile(id):
     #TODO: Generate profile page from diver id
-    return 'Needs html'
+    return render_template('profile.html',profile=profile)
+
+@app.route('/profile/')
+def viewprofile():
+    if 'id' not in session:
+        return redirect(url_for('index'))
+    #TODO: Generate profile page from diver id
+    return render_template('profile.html',profile=profile)
 
 # -------------------------------------------------------------------------------------+
 
