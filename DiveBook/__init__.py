@@ -15,10 +15,12 @@ app.secret_key = 'A0Zz98j/3yX R~XHH!?1N]LWX/,?RT'  #Temp secret
 def index():
     return render_template('home.html')
 
-import DiveBook.divers
+# TODO: Divesheets, schools, doable dives, profile editing, favorite dive
 
-import DiveBook.meets
+import DiveBook.divers # TODO: Search divers, view a divers profile from session, view from id in url
 
-import DiveBook.dd
+import DiveBook.meets # TODO: Add single meet view, meet creation, and meet registration
 
-import DiveBook.sessions
+import DiveBook.dd  # complete
+
+import DiveBook.sessions # complete

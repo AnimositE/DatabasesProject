@@ -81,7 +81,7 @@ class Database:
     def register(self, email, password):
     	self.cursor.execute("SELECT id FROM Divers WHERE email=%s;",[email])
     	registered =  self.cursor.fetchall()
-    	if registered:
+    	if len(registered) > 0:
     		return False
     	else:
     		self.cursor.execute("INSERT INTO Divers (email, hashpass) VALUES (%s, %s);",[email, password])
