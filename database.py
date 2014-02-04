@@ -20,16 +20,16 @@ class Database:
     # DIVERS ------------------------------------------------------------------------
 
     def getDivers(self):
-        self.cursor.execute("SELECT * FROM Divers;")
+        self.cursor.execute("SELECT id, fName, lName, name FROM Divers, Profiles, Schools WHERE Divers.id = Profiles.diverID AND Profiles.schoolID = Schools.id;")
         return self.cursor.fetchall()
 
     def getDiverProfile(self, diverid):
         # TODO: pull meets
-        self.cursor.execute("SELECT email, fName, lName, age, favoriteDive FROM Divers JOIN Profiles ON id = diverID WHERE id = %s",[diverid])
+        self.cursor.execute("SELECT email, fName, lName, age, favoriteDive FROM Divers JOIN Profiles ON id = diverID WHERE id = %s;",[diverid])
         return self.cursor.fetchall()
 
     def searchDivers(fname, lname, school):
-    	self.cursor.execute("SELECT diverID, fName, lName, name FROM Profiles, Schools WHERE Profiles.schoolID=Schools.id AND Profiles.fName LIKE %s AND Profiles.lName LIKE %s AND Schools.name LIKE %s",[fname,lname,school])
+    	self.cursor.execute("SELECT diverID, fName, lName, name FROM Profiles, Schools WHERE Profiles.schoolID=Schools.id AND Profiles.fName LIKE %s AND Profiles.lName LIKE %s AND Schools.name LIKE %s;",[fname,lname,school])
     	return self.cursor.fetchall()
 
     # -------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ class Database:
     # DIVESHEETS --------------------------------------------------------------------
 
     def getDiveSheets(self, diverid):
-        self.cursor.execute("SELECT * FROM DiveSheets WHERE diverID=%s",[diverid])
+        self.cursor.execute("SELECT * FROM DiveSheets WHERE diverID=%s;",[diverid])
         return self.cursor.fetchall()
 
 
@@ -46,7 +46,7 @@ class Database:
     # DIVES ------------------------------------------------------------------------
 
     def getDD(self, name, height, position):
-    	self.cursor.execute("SELECT dd, number FROM Dives WHERE name=%s AND height=%s AND position=%s",[name, height, position])
+    	self.cursor.execute("SELECT dd, number FROM Dives WHERE name=%s AND height=%s AND position=%s;",[name, height, position])
     	return self.cursor.fetchall()[0]
 
     def getDives(self):
