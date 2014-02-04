@@ -29,6 +29,7 @@ class Database:
         return self.cursor.fetchall()
 
     def searchDivers(self, fname, lname, school):
+    	# TODO: fix search
     	self.cursor.execute("SELECT diverID, fName, lName, name FROM Profiles, Schools WHERE Profiles.schoolID=Schools.id AND (Profiles.fName LIKE %s OR Profiles.lName LIKE %s OR Schools.name LIKE %s);",[fname,lname,school])
     	return self.cursor.fetchall()
 
