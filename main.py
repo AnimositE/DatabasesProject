@@ -117,7 +117,7 @@ def register():
 @app.route('/login/',methods=['POST'])
 def login():
     email = request.form['email']
-    password = hashlib.sha1(request.form['pass']).hexdigest()    
+    password = hashlib.sha1(request.form['pass']).hexdigest()
     response = [(1,),]
     response = db.login(email,password)
     if len(response) == 0:
