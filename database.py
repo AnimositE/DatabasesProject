@@ -20,7 +20,7 @@ class Database:
     # DIVERS ------------------------------------------------------------------------
 
     def getDivers(self):
-        self.cursor.execute("SELECT Divers.id, fName, lName, name FROM Divers, Profiles, Schools WHERE Divers.id = Profiles.diverID AND Profiles.schoolID = Schools.id AND fName IS NOT NULL AND lName IS NOT NULL AND schoolID IS NOT NULL;")
+        self.cursor.execute("SELECT Divers.id, fName, lName, name FROM Divers, Profiles, Schools WHERE Divers.id = Profiles.diverID AND Profiles.schoolID = Schools.id AND fName IS NOT NULL AND lName IS NOT NULL;")
         return self.cursor.fetchall()
 
     def getDiverProfile(self, diverid):
@@ -47,7 +47,10 @@ class Database:
 
     def getDD(self, name, height, position):
     	self.cursor.execute("SELECT dd, number FROM Dives WHERE name=%s AND height=%s AND position=%s;",[name, height, position])
-    	return self.cursor.fetchall()[0]
+    	dd = self.cursor.fetchall()
+    	if len(dd) > 0:
+    		return self.cursor.fetchall()[0]
+    	return ['NOT FOUND', '000']
 
     def getDives(self):
         self.cursor.execute("SELECT * FROM Dives;")
