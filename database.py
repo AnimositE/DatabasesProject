@@ -49,7 +49,7 @@ class Database:
     	self.cursor.execute("SELECT dd, number FROM Dives WHERE name=%s AND height=%s AND position=%s;",[name, height, position])
     	dd = self.cursor.fetchall()
     	if len(dd) > 0:
-    		return self.cursor.fetchall()[0]
+    		return dd[0]
     	return ['NOT FOUND', '000']
 
     def getDives(self):
