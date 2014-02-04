@@ -28,7 +28,7 @@ class Database:
         self.cursor.execute("SELECT email, fName, lName, age, favoriteDive FROM Divers JOIN Profiles ON id = diverID WHERE id = %s;",[diverid])
         return self.cursor.fetchall()
 
-    def searchDivers(fname, lname, school):
+    def searchDivers(self, fname, lname, school):
     	self.cursor.execute("SELECT diverID, fName, lName, name FROM Profiles, Schools WHERE Profiles.schoolID=Schools.id AND Profiles.fName LIKE %s AND Profiles.lName LIKE %s AND Schools.name LIKE %s;",[fname,lname,school])
     	return self.cursor.fetchall()
 
