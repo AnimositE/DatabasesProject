@@ -20,7 +20,7 @@ class Database:
     # DIVERS ------------------------------------------------------------------------
 
     def getDivers(self):
-        self.cursor.execute("SELECT id, fName, lName, name FROM Divers, Profiles, Schools WHERE Divers.id = Profiles.diverID AND Profiles.schoolID = Schools.id;")
+        self.cursor.execute("SELECT Divers.id, fName, lName, name FROM Divers, Profiles, Schools WHERE Divers.id = Profiles.diverID AND Profiles.schoolID = Schools.id;")
         return self.cursor.fetchall()
 
     def getDiverProfile(self, diverid):
