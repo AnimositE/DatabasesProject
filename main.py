@@ -1,9 +1,9 @@
 import os
 import hashlib
 from flask import Flask, render_template, send_from_directory, request, session, redirect, url_for
-#from database import Database
+from database import Database
 
-#db = Database()
+db = Database()
 
 app = Flask(__name__)
 app.config.update(DEBUG = True,)
@@ -20,14 +20,18 @@ def index():
 
 @app.route('/divers/')
 def divers():
-    divers = [[1,'Mason Schneider','Rose-Hulman'],[2,'Mark Hein','Rose-Hulman']]
-    #divers = db.getDivers()
+    divers = [[1,'Mason','Schneider','Rose-Hulman'],[2,'Mark','Hein','Rose-Hulman']]
+    divers = db.getDivers()
     return render_template('divers.html',divers=divers)
 
 @app.route('/divers/',methods=['POST'])
 def searchDivers():
-    #TODO: Search for divers given post data
-    return render_template('divers.html')
+    fname = '%' + request.form['first'] + '%'
+    lname = '%' + request.form['last'] + '%'
+    school = '%' + request.form['school'] + '%'
+    divers = [[1,'Mason','Schneider','Rose-Hulman'],]
+    divers = db.searchDivers(fname, lname, school)
+    return render_template('divers.html',divers=divers)
 
 @app.route('/profile/<int:id>')
 def profile(id):
@@ -49,8 +53,8 @@ def viewprofile():
 def meets():
     upcoming = [[1,'Rose-Hulman','IN','2014-02-19'],]
     past = [[2,'ISU','IN','2014-01-19'],]
-    #upcoming = db.getUpcomingMeets()
-    #past = db.getPastMeets()
+    upcoming = db.getUpcomingMeets()
+    past = db.getPastMeets()
     return render_template('meets.html',upcoming=upcoming,past=past)
 
 @app.route('/meets/<int:id>')
@@ -82,7 +86,7 @@ def ddPost():
     if twist != '0':
         name += ' ' + twist
     diveInfo = [1.4,'101']
-    #diveInfo = db.getDD(name,height,position)
+    diveInfo = db.getDD(name,height,position)
     return render_template('ddlookup.html',name=name,height=height,dd=diveInfo[0],number=diveInfo[1],position=position)
 
 # --------------------------------------------------------------------------------------+
@@ -98,7 +102,7 @@ def register():
                 email = request.form['email']
                 password = hashlib.sha1(request.form['pass']).hexdigest()
                 registered = True
-                #registered = db.register(email, password)
+                registered = db.register(email, password)
                 if registered:
                     login()
                 else:
@@ -113,9 +117,9 @@ def register():
 @app.route('/login/',methods=['POST'])
 def login():
     email = request.form['email']
-    password = hashlib.sha1(request.form['pass']).hexdigest()
-    #response = db.login(email,password)
+    password = hashlib.sha1(request.form['pass']).hexdigest()    
     response = [(1,),]
+    response = db.login(email,password)
     if len(response) == 0:
         return redirect(url_for('index'))
     else:

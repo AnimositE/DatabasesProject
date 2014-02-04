@@ -1,7 +1,7 @@
 CREATE TABLE Divers (
 	id SERIAL PRIMARY KEY,
 	email VARCHAR(100) NOT NULL,
-	hashpass CHAR(40) NOT NULL
+	hashpass CHAR(40) NOT NULL,
 );
 
 CREATE TABLE Schools (
@@ -23,7 +23,8 @@ CREATE TABLE Profiles (
 	fName VARCHAR(50) NULL,
 	lName VARCHAR(50) NULL,
 	age INT NULL,
-	favoriteDive INT NULL
+	favoriteDive INT NULL,
+	schoolID INT NULL
 );
 
 CREATE TABLE Doable (
