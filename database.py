@@ -24,17 +24,26 @@ class Database:
         return self.cursor.fetchall()
 
     def getDiverProfile(self, diverid):
-    	self.cursor.execute("SELECT email, fName, lName, age, favoriteDive FROM Divers JOIN Profiles ON id = diverID WHERE id = %s",[diverid])
-    	return self.cursor.fetchall()
+        # needs to pull meets
+        self.cursor.execute("SELECT email, fName, lName, age, favoriteDive FROM Divers JOIN Profiles ON id = diverID WHERE id = %s",[diverid])
+        return self.cursor.fetchall()
 
     # -------------------------------------------------------------------------------
 
     # DIVESHEETS --------------------------------------------------------------------
 
     def getDiveSheets(self, diverid):
-    	self.cursor.execute("SELECT * FROM DiveSheets WHERE diverID=%s",[diverid])
-    	return self.cursor.fetchall()
+        self.cursor.execute("SELECT * FROM DiveSheets WHERE diverID=%s",[diverid])
+        return self.cursor.fetchall()
 
+
+    # -------------------------------------------------------------------------------
+
+    # DIVES ------------------------------------------------------------------------
+
+    def getDD(self, name, height, position):
+    	self.cursor.execute("SELECT dd, number FROM Dives WHERE name=%s AND height=%s AND position=%s",[name, height, position])
+    	return self.cursor.fetchall()[0]
 
     # -------------------------------------------------------------------------------
 

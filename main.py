@@ -65,11 +65,27 @@ def registerMeet(id, sheetid):
 
 # --------------------------------------------------------------------------------------+
 
+# DD lookup -----------------------------------------------------------------------------
+
 @app.route('/dd/')
 def ddLookup():
-    #dives = db.getDives()
     return render_template('ddlookup.html')
 
+@app.route('/dd/',methods=['POST'])
+def ddPost():
+    height = request.form['height']
+    group = request.form['group']
+    dive = request.form['dive']
+    twist = request.form['twist']
+    position = request.form['position']
+    name = group + ' ' + dive
+    if twist != '0':
+        name += ' ' + twist
+    diveInfo = [1.4,'101']
+    #diveInfo = db.getDD(name,height,position)
+    return render_template('ddlookup.html',name=name,height=height,dd=diveInfo[0],number=diveInfo[1],position=position)
+
+# --------------------------------------------------------------------------------------+
 
 #  Diver registration and logging ---------------------------------------------------------
 

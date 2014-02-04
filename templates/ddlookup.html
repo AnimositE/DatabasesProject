@@ -91,9 +91,9 @@
             </div>
             <div class="panel-body">
               <br>
-              <select class="form-control">
-                <option>1 metre</option>
-                <option>3 metre</option>
+              <select name="height" class="form-control">
+                <option value="1">1 metre</option>
+                <option value="3">3 metre</option>
               </select>
             </div>
           </div>
@@ -106,42 +106,42 @@
               <div class="row">
                 <div class="col-md-4">
                   <span class="label label-default">Group</span>
-                  <select class="form-control">
-                    <option>Forward</option>
-                    <option>Back</option>
-                    <option>Reverse</option>
-                    <option>Inward</option>
+                  <select name="group" class="form-control">
+                    <option value="Forward">Forward</option>
+                    <option value="Back">Back</option>
+                    <option value="Reverse">Reverse</option>
+                    <option value="Inward">Inward</option>
                   </select>
                 </div>
                 <div class="col-md-4">
                   <span class="label label-default">Dive</span>
-                  <select class="form-control">
-                    <option>Dive</option>
-                    <option>Somersault</option>
-                    <option>1 1/2 Somersault</option>
-                    <option>Double Somersault</option>
-                    <option>2 1/2 Somersault</option>
-                    <option>Triple Somersault</option>
-                    <option>3 1/2 Somersault</option>
-                    <option>4 1/2 Somersault</option>
-                    <option>Flying Somersault</option>
-                    <option>Flying 1 1/2 Somersault</option>
-                    <option>Flying 2 1/2 Somersault</option>
+                  <select name="dive" class="form-control">
+                    <option value="Dive">Dive</option>
+                    <option value="Somersault">Somersault</option>
+                    <option value="1 1/2 Somersault">1 1/2 Somersault</option>
+                    <option value="Double Somersault">Double Somersault</option>
+                    <option value="2 1/2 Somersault">2 1/2 Somersault</option>
+                    <option value="Triple Somersault">Triple Somersault</option>
+                    <option value="3 1/2 Somersault">3 1/2 Somersault</option>
+                    <option value="4 1/2 Somersault">4 1/2 Somersault</option>
+                    <option value="Flying Somersault">Flying Somersault</option>
+                    <option value="Flying 1 1/2 Somersault">Flying 1 1/2 Somersault</option>
+                    <option value="Flying 2 1/2 Somersault">Flying 2 1/2 Somersault</option>
                   </select>
                 </div>
                 <div class="col-md-4">
                   <span class="label label-default">Number of Twists</span>
-                  <select class="form-control">
-                    <option>0</option>
-                    <option>1/2 Twist</option>
-                    <option>1 Twist</option>
-                    <option>1 1/2 Twists</option>
-                    <option>2 Twists</option>
-                    <option>2 1/2 Twists</option>
-                    <option>3 Twists</option>
-                    <option>3 1/2 Twists</option>
-                    <option>4 Twists</option>
-                    <option>4 1/2 Twists</option>
+                  <select name="twist" class="form-control">
+                    <option value="0">0</option>
+                    <option value="1/2 Twist">1/2 Twist</option>
+                    <option value="1 Twist">1 Twist</option>
+                    <option value="1 1/2 Twists">1 1/2 Twists</option>
+                    <option value="2 Twists">2 Twists</option>
+                    <option value="2 1/2 Twists">2 1/2 Twists</option>
+                    <option value="3 Twists">3 Twists</option>
+                    <option value="3 1/2 Twists">3 1/2 Twists</option>
+                    <option value="4 Twists">4 Twists</option>
+                    <option value="4 1/2 Twists">4 1/2 Twists</option>
                   </select>
                 </div>
               </div>
@@ -154,11 +154,11 @@
             </div>
             <div class="panel-body">
               <br>
-              <select class="form-control">
-                <option>Straight</option>
-                <option>Pike</option>
-                <option>Tuck</option>
-                <option>Free</option>
+              <select name="position" class="form-control">
+                <option value="A">Straight</option>
+                <option value="B">Pike</option>
+                <option value="C">Tuck</option>
+                <option value="D">Free</option>
               </select>
             </div>
           </div>
@@ -168,15 +168,17 @@
         <div class="col-md-3">
           <button type="submit" class="btn btn-primary btn-block">Click to Find DD</button>
         </div></form>
+        {% if dd and dd > 0 %}
         <div class="col-md-9">
           <div class="panel panel-default">
-            <div class="panel-heading">The DD of 101A Forward Dive Straight on 1 metre board is:
+            <div class="panel-heading">The DD of {{number}}{{position}} {{name}} on a {{height}} metre board is:
             </div>
             <div class="panel-body">
-              <h1>1.4</h1>
+              <h1>{{dd}}</h1>
             </div>
           </div>
         </div>
+        {% endif %}
       </div>
       <div class="row"></div>
       <!-- Example row of columns -->
