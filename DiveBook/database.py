@@ -6,7 +6,7 @@ class Database:
 
     def __init__(self):
         urlparse.uses_netloc.append("postgres")
-        url = urlparse.urlparse(os.environ["HEROKU_POSTGRESQL_NAVY_URL"])
+        url = urlparse.urlparse(os.environ["DATABASE_URL"])
 
         self.conn = psycopg2.connect(
             database=url.path[1:],
@@ -107,6 +107,7 @@ class Database:
     		return False
     	else:
     		self.cursor.execute("INSERT INTO Divers (email, hashpass) VALUES (%s, %s);",[email, password])
+            conn.commit()
     		return True
 
    	# --------------------------------------------------------------------------------
