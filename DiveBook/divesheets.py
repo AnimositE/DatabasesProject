@@ -14,4 +14,9 @@ def sheet(id):
 	info = [[1,'A',5,'Forward Dive','S',1.4]]
 	return render_template('divesheet.html', info=info)
 
+@app.route('/meets/<int:id>/sheet/<int:sheetid>')
+def registerMeet(id, sheetid):
+    #TODO: Register a sheet
+    return "needs html" 
+
 # Registering divesheets should be done through meets

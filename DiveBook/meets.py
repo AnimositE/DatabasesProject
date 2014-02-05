@@ -13,10 +13,11 @@ def meets():
 
 @app.route('/meets/<int:id>')
 def meet(id):
-    #TODO: Pull meet info and populate page
-    return render_template('meet.html')
+    meet = [1,'Rose-Hulman Dive Meet', '5500 Wabash Ave','Terre Haute','IN','47803','2014-02-29',13]
+    divesheets = [[1,'Awesome Divesheet'],[2,'Easy Divesheet']]
+    meet = db.getMeet(id)
+    if 'id' in session:
+        divesheets = [[1,'Awesome Divesheet'],[2,'Easy Divesheet']]
+        divesheets = db.getNonRegisteredDiveSheets(session['id'])
+    return render_template('meet.html',meet=meet,divesheets=divesheets)
 
-@app.route('/meets/<int:id>/sheet/<int:sheetid>')
-def registerMeet(id, sheetid):
-    #TODO: Register a sheet
-    return "needs html" 

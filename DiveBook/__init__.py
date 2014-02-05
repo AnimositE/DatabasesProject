@@ -19,7 +19,7 @@ def index():
 
 import DiveBook.divers # TODO: Search divers, view a divers profile from session, view from id in url
 
-import DiveBook.meets # TODO: Add single meet view, meet creation, and meet registration
+import DiveBook.meets # TODO: Add meet creation
 
 import DiveBook.dd  # complete
 

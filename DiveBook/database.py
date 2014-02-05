@@ -41,6 +41,10 @@ class Database:
         self.cursor.execute("SELECT * FROM DiveSheets WHERE diverID=%s;",[diverid])
         return self.cursor.fetchall()
 
+    def getNonRegisteredDiveSheets(self, diverid):
+        self.cursor.execute("SELECT id, name FROM DiveSheets WHERE diverID=%s AND meetID IS NULL;",[diverid])
+        return self.cursor.fetchall()
+
 
     # -------------------------------------------------------------------------------
 
@@ -68,6 +72,12 @@ class Database:
     def getPastMeets(self):
         self.cursor.execute("SELECT id, title, state, date FROM Meets WHERE date < CURRENT_DATE;")
         return self.cursor.fetchall()
+
+    def getMeet(self, id):
+        self.cursor.execute("SELECT Meets.id, title, address, city, state, zip, date FROM Meets WHERE Meets.id = %s;",[id])
+        meetInfo = self.cursor.fetchall()[0]
+        self.cursor.execute("SELECT COUNT(*) FROM Meets, DiveSheets WHERE Meets.id = DiveSheets.meetID AND Meets.id = %s;",[id])
+        return meetInfo.append(self.cursor.fetchall()[0][0])
 
     # --------------------------------------------------------------------------------
 
