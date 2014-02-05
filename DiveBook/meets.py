@@ -20,5 +20,5 @@ def meet(id):
     if 'id' in session:
         divesheets = [[1,'Awesome Divesheet'],[2,'Easy Divesheet']]
         divesheets = db.getNonRegisteredDiveSheets(session['id'])
-    return render_template('meet.html',meet=meet,divesheets=divesheets)
+    return render_template('meet.html',meet=meet,count=count,divesheets=divesheets)
 
