@@ -13,7 +13,7 @@ def register():
                 email = request.form['email']
                 password = hashlib.sha1(request.form['pass']).hexdigest()
                 registered = True
-                #registered = db.register(email, password)
+                registered = db.register(email, password)
                 if registered:
                     login()
                 else:

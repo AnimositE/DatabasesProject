@@ -17,7 +17,7 @@ def index():
 
 # TODO: Divesheets, schools, doable dives, profile editing, favorite dive
 
-import DiveBook.divers # TODO: Search divers, view a divers profile from session, view from id in url
+import DiveBook.divers # TODO: view a divers profile from session, view from id in url
 
 import DiveBook.meets # TODO: Add meet creation
 

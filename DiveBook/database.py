@@ -102,7 +102,7 @@ class Database:
 
     def register(self, email, password):
     	self.cursor.execute("SELECT id FROM Divers WHERE email=%s;",[email])
-    	registered =  self.cursor.fetchall()
+    	registered = self.cursor.fetchall()
     	if len(registered) > 0:
     		return False
     	else:
