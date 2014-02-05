@@ -6,7 +6,7 @@ class Database:
 
     def __init__(self):
         urlparse.uses_netloc.append("postgres")
-        url = urlparse.urlparse(os.environ["DATABASE_URL"])
+        url = urlparse.urlparse(os.environ["HEROKU_POSTGRESQL_NAVY"])
 
         self.conn = psycopg2.connect(
             database=url.path[1:],
