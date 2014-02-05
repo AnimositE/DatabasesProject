@@ -77,7 +77,7 @@ class Database:
         self.cursor.execute("SELECT Meets.id, title, address, city, state, zip, date FROM Meets WHERE Meets.id = %s;",[id])
         meetInfo = self.cursor.fetchall()[0]
         self.cursor.execute("SELECT COUNT(*) FROM Meets, DiveSheets WHERE Meets.id = DiveSheets.meetID AND Meets.id = %s;",[id])
-        return meetInfo.append(self.cursor.fetchall()[0][0])
+        return meetInfo, self.cursor.fetchall()[0][0]
 
     # --------------------------------------------------------------------------------
 

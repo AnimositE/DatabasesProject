@@ -13,9 +13,10 @@ def meets():
 
 @app.route('/meets/<int:id>')
 def meet(id):
-    meet = [1,'Rose-Hulman Dive Meet', '5500 Wabash Ave','Terre Haute','IN','47803','2014-02-29',13]
+    meet = [1,'Rose-Hulman Dive Meet', '5500 Wabash Ave','Terre Haute','IN','47803','2014-02-29']
+    count = 13
     divesheets = [[1,'Awesome Divesheet'],[2,'Easy Divesheet']]
-    meet = db.getMeet(id)
+    meet,count = db.getMeet(id)
     if 'id' in session:
         divesheets = [[1,'Awesome Divesheet'],[2,'Easy Divesheet']]
         divesheets = db.getNonRegisteredDiveSheets(session['id'])
