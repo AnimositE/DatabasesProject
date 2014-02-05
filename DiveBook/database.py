@@ -30,7 +30,19 @@ class Database:
 
     def searchDivers(self, fname, lname, school):
     	# TODO: fix search
-    	self.cursor.execute("SELECT diverID, fName, lName, name FROM Profiles, Schools WHERE Profiles.schoolID=Schools.id AND (Profiles.fName LIKE %s OR Profiles.lName LIKE %s OR Schools.name LIKE %s);",[fname,lname,school])
+        query = "SELECT diverID, fName, lName, name FROM Profiles, Schools WHERE Profiles.schoolID=Schools.id"
+        params = []
+        if fname != '%%':
+            query += " AND Profiles.fName LIKE %s"
+            params.append(fname)
+        if lname != '%%':
+            query += " AND Profiles.lName LIKE %s"
+            params.append(lname)
+        if school != '%%':
+            query += " AND Schools.name LIKE %s"
+            params.append(school)
+        query += ';'
+    	self.cursor.execute(query,params)
     	return self.cursor.fetchall()
 
     # -------------------------------------------------------------------------------
