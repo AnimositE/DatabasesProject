@@ -107,7 +107,7 @@ class Database:
             return False
         else:
             self.cursor.execute("INSERT INTO Divers (email, hashpass) VALUES (%s, %s);",[email, password])
-            conn.commit()
+            self.conn.commit()
             return True
 
    	# --------------------------------------------------------------------------------
