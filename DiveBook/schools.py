@@ -38,3 +38,8 @@ def createMeet():
 @app.route('/schools/claimdiver/')
 def claimDiver():
 	return 'no bueno'
+
+@app.route('/schools/logout/')
+def schoolLogout():
+	session.pop('school', None)
+    return redirect(url_for('schools'))
