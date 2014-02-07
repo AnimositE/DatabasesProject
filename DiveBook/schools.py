@@ -41,5 +41,5 @@ def claimDiver():
 
 @app.route('/schools/logout/')
 def schoolLogout():
-	session.pop('school', None)
+    session.pop('school', None)
     return redirect(url_for('schools'))
