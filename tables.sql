@@ -1,13 +1,14 @@
 CREATE TABLE Divers (
 	id SERIAL PRIMARY KEY,
 	email VARCHAR(100) NOT NULL,
-	hashpass CHAR(40) NOT NULL,
+	hashpass CHAR(40) NOT NULL
 );
 
 CREATE TABLE Schools (
 	id SERIAL PRIMARY KEY,
 	name VARCHAR(100) NOT NULL,
-	division INT NOT NULL
+	division INT NOT NULL,
+	hashpass CHAR(40) NOT NULL
 );
 
 CREATE TABLE DiveSheets (
@@ -50,7 +51,8 @@ CREATE TABLE Meets (
 	city VARCHAR(50) NOT NULL,
 	state VARCHAR(2) NOT NULL,
 	zip VARCHAR(5) NOT NULL,
-	date DATE NOT NULL
+	date DATE NOT NULL,
+	schoolID INT REFERENCES Schools(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Scores (

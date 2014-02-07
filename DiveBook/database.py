@@ -47,6 +47,15 @@ class Database:
 
     # -------------------------------------------------------------------------------
 
+    # SCHOOLS ------------------------------------------------------------------------
+
+    def schoolLogin(self, name, password):
+        self.cursor.execute("SELECT id FROM Schools \
+                            WHERE name=%s AND hashpass=%s;",[name,password])
+        return self.cursor.fetchall()
+
+    # --------------------------------------------------------------------------------
+
     # DIVESHEETS --------------------------------------------------------------------
 
     def getDiveSheets(self, diverid):
