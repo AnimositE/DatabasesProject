@@ -13,7 +13,7 @@ def register():
                 email = request.form['email']
                 password = hashlib.sha1(request.form['pass']).hexdigest()
                 registered = True
-                registered = db.register(email, password)
+                #registered = db.register(email, password)
                 if registered:
                     login()
                 else:
@@ -22,6 +22,8 @@ def register():
                 message = "Passwords do not match"
         else:
             message = "No field can be left empty"
+    if 'id' in session:
+        return redirect(url_for('index'))
     return render_template('register.html',message=message)
 
 

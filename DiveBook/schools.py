@@ -31,9 +31,9 @@ def schoolLogin():
 def schoolMeetInfo(id):
 	return 'nothing yet'
 
-@app.route('/schools/createmeet/')
+@app.route('/schools/createmeet/',methods=['GET','POST'])
 def createMeet():
-	return 'nothing here'
+	return render_template('createmeet.html')
 
 @app.route('/schools/claimdiver/')
 def claimDiver():
