@@ -6,10 +6,13 @@ from DiveBook import app
 @app.route('/schools/')
 def schools():
 	if 'school' in session:
+		schoolid = session['school']
 		schoolInfo = ['Rose-Hulman', 3]
 		meets = [[1,'Rose-Hulman Dive Meet'],]
 		divers = [['Mason','Schneider'],]
-		#TODO: add db
+		#schoolInfo = db.schoolInfo(schoolid)
+		#meets = db.getMeetsForSchool(schoolid)
+		#divers = db.getDiversAtSchool(schoolid)
 		return render_template('schoolprofile.html',schoolInfo=schoolInfo,meets=meets,divers=divers)
 	else:
 		return render_template('schools.html')

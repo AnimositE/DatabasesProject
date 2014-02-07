@@ -29,7 +29,6 @@ class Database:
         return self.cursor.fetchall()
 
     def searchDivers(self, fname, lname, school):
-    	# TODO: fix search
         query = "SELECT diverID, fName, lName, name FROM Profiles, Schools WHERE Profiles.schoolID=Schools.id"
         params = []
         if fname != '%%':
@@ -45,6 +44,10 @@ class Database:
     	self.cursor.execute(query,params)
     	return self.cursor.fetchall()
 
+    def getDiversAtSchool(self, schoolid):
+        self.cursor.execute("SELECT fName, lName FROM Profiles WHERE schoolID=%s;",[schoolid])
+        return self.cursor.fetchall()
+
     # -------------------------------------------------------------------------------
 
     # SCHOOLS ------------------------------------------------------------------------
@@ -53,6 +56,10 @@ class Database:
         self.cursor.execute("SELECT id FROM Schools \
                             WHERE name=%s AND hashpass=%s;",[name,password])
         return self.cursor.fetchall()
+
+    def schoolInfo(self, schoolid):
+        self.cursor.execute("SELECT name, division FROM Schools WHERE id=%s;",[schoolid])
+        return self.cursor.fetchall()[0]
 
     # --------------------------------------------------------------------------------
 
@@ -99,6 +106,10 @@ class Database:
         meetInfo = self.cursor.fetchall()[0]
         self.cursor.execute("SELECT COUNT(*) FROM Meets, DiveSheets WHERE Meets.id = DiveSheets.meetID AND Meets.id = %s;",[id])
         return meetInfo, self.cursor.fetchall()[0][0]
+
+    def getMeetsForSchool(self, schoolid):
+        self.cursor.execute("SELECT id, title FROM Meets WHERE schoolID=%s;",[schoolid])
+        return self.cursor.fetchall()
 
     # --------------------------------------------------------------------------------
 
