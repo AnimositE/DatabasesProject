@@ -80,36 +80,43 @@
     </div>
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="container">
-      <form>
-        <h1>{{sheet[0][1]|striptags}}</h1>
+      <h1>Edit Dive Sheet</h1>
+      <ul class="list-group"></ul>
+      <form action="/divesheets/{{sheet[0][0]}}/edit" method="POST">
+        <div class="form-group">
+          <label class="control-label">Title</label>
+          <div class="controls">
+            <input type="text" class="form-control" name="title" placeholder="Title" value="{{sheet[0][1]|striptags}}">
+          </div>
+        </div>{% if meet %}
+        <label class="form-label">Current Meet</label>
         <ul class="list-group">
-          <li class="list-group-item">Meet: {{sheet[0][2]|striptags}}</li>
-        </ul>
-      </form>
-      <table class="table table-condensed table-bordered">
-        <thead>
-          <tr>
-            <th>Dive Order</th>
-            <th>Dive No. &amp; Pos. Ltr. (A,B,C,D)</th>
-            <th>Level 5/7.5/10</th>
-            <th>Written Description</th>
-            <th>Position (S,P,T,F)</th>
-            <th>D.D.</th>
-            <th>Judge 1</th>
-            <th>Judge 2</th>
-            <th>Judge 3</th>
-            <th>Judge 4</th>
-            <th>Judge 5</th>
-            <th>Judge 6</th>
-            <th>Judge 7</th>
-            <th>Judge 8</th>
-            <th>Judge 9</th>
-            <th>Judges Total</th>
-            <th>Cumulative Total Award</th>
-          </tr>
-        </thead>
-        <tbody>
-          <script type='text/javascript'>
+          <li class="list-group-item">{{meet}}</li>
+        </ul>{% endif %}
+        <table class="table table-condensed table-bordered">
+          <thead>
+            <tr>
+              <th>Dive Order</th>
+              <th>Dive No. &amp; Pos. Ltr. (A,B,C,D)</th>
+              <th>Level 5/7.5/10</th>
+              <th>Written Description</th>
+              <th>Position (S,P,T,F)</th>
+              <th>D.D.</th>
+              <th>Judge 1</th>
+              <th>Judge 2</th>
+              <th>Judge 3</th>
+              <th>Judge 4</th>
+              <th>Judge 5</th>
+              <th>Judge 6</th>
+              <th>Judge 7</th>
+              <th>Judge 8</th>
+              <th>Judge 9</th>
+              <th>Judges Total</th>
+              <th>Cumulative Total Award</th>
+            </tr>
+          </thead>
+          <tbody>
+		  <script type='text/javascript'>
 			x=0;
 		  </script>
             {% for s in sheet[0][3] %}<tr>
@@ -134,12 +141,13 @@
               <td>{{s[14]}}</td>
               <td>{{s[15]}}</td>
             </tr>{% endfor %}
-        </tbody>
-      </table>
-      <ul class="list-group"></ul>
-      <a class="btn btn-primary" href="/divesheets/1/edit">Edit</a> <a class="btn btn-primary" href="/divesheets/">Back</a>
-      <div class="row"></div>
-      <hr>
+          </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">Save</button>
+         <a class="btn btn-danger">Delete</a> <a class="btn btn-primary" href="/divesheets/{{sheet[0][0]}}">Back</a> {% if message %}
+        <span class="label label-danger">{{ message }}</span>{% endif %}
+        <hr>
+      </form>
       <footer>
         <p>&copy; DiveBook 2014</p>
       </footer>

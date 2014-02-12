@@ -80,66 +80,72 @@
     </div>
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="container">
+      <h1>Create New Dive Sheet</h1>
+      <ul class="list-group"></ul>
       <form>
-        <h1>{{sheet[0][1]|striptags}}</h1>
-        <ul class="list-group">
-          <li class="list-group-item">Meet: {{sheet[0][2]|striptags}}</li>
-        </ul>
-      </form>
-      <table class="table table-condensed table-bordered">
-        <thead>
-          <tr>
-            <th>Dive Order</th>
-            <th>Dive No. &amp; Pos. Ltr. (A,B,C,D)</th>
-            <th>Level 5/7.5/10</th>
-            <th>Written Description</th>
-            <th>Position (S,P,T,F)</th>
-            <th>D.D.</th>
-            <th>Judge 1</th>
-            <th>Judge 2</th>
-            <th>Judge 3</th>
-            <th>Judge 4</th>
-            <th>Judge 5</th>
-            <th>Judge 6</th>
-            <th>Judge 7</th>
-            <th>Judge 8</th>
-            <th>Judge 9</th>
-            <th>Judges Total</th>
-            <th>Cumulative Total Award</th>
-          </tr>
-        </thead>
-        <tbody>
+        <div class="form-group">
+          <label class="control-label">Title</label>
+          <div class="controls">
+            <input type="text" class="form-control" placeholder="Title">
+          </div>
+        </div>
+        <label class="form-label">Register for a Meet</label>
+        <select class="form-control">
+          <option>Rose-Hulman Dive Meet</option>
+        </select>
+		<br>
+        <table class="table table-condensed table-bordered">
+          <thead>
+            <tr>
+              <th>Dive Order</th>
+              <th>Dive No. &amp; Pos. Ltr. (A,B,C,D)</th>
+              <th>Level 5/7.5/10</th>
+              <th>Written Description</th>
+              <th>Position (S,P,T,F)</th>
+              <th>D.D.</th>
+              <th>Judge 1</th>
+              <th>Judge 2</th>
+              <th>Judge 3</th>
+              <th>Judge 4</th>
+              <th>Judge 5</th>
+              <th>Judge 6</th>
+              <th>Judge 7</th>
+              <th>Judge 8</th>
+              <th>Judge 9</th>
+              <th>Judges Total</th>
+              <th>Cumulative Total Award</th>
+            </tr>
+          </thead>
+          <tbody>
           <script type='text/javascript'>
 			x=0;
 		  </script>
-            {% for s in sheet[0][3] %}<tr>
+            {% for s in range(0, 15) %}<tr>
 			  <td><script type='text/javascript'>
 				  x=x+1;
 				  document.write(x);
 			  </script></td>
-              <td>{{s[0]}}</td>
-              <td>{{s[1]}}</td>
-              <td>{{s[2]}}</td>
-              <td>{{s[3]}}</td>
-              <td>{{s[4]}}</td>
-              <td>{{s[5]}}</td>
-			  <td>{{s[6]}}</td>
-              <td>{{s[7]}}</td>
-              <td>{{s[8]}}</td>
-              <td>{{s[9]}}</td>
-              <td>{{s[10]}}</td>
-              <td>{{s[11]}}</td>
-			  <td>{{s[12]}}</td>
-              <td>{{s[13]}}</td>
-              <td>{{s[14]}}</td>
-              <td>{{s[15]}}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+			  <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+			  <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
             </tr>{% endfor %}
-        </tbody>
-      </table>
-      <ul class="list-group"></ul>
-      <a class="btn btn-primary" href="/divesheets/1/edit">Edit</a> <a class="btn btn-primary" href="/divesheets/">Back</a>
-      <div class="row"></div>
-      <hr>
+          </tbody>
+        </table>
+        <a class="btn btn-primary" href="/divesheets/">Save</a><hr>
+      </form>
       <footer>
         <p>&copy; DiveBook 2014</p>
       </footer>
