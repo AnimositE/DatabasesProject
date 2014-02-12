@@ -10,9 +10,9 @@ def schools():
 		schoolInfo = ['Rose-Hulman', 3]
 		meets = [[1,'Rose-Hulman Dive Meet'],]
 		divers = [['Mason','Schneider'],]
-		#schoolInfo = db.schoolInfo(schoolid)
-		#meets = db.getMeetsForSchool(schoolid)
-		#divers = db.getDiversAtSchool(schoolid)
+		schoolInfo = db.schoolInfo(schoolid)
+		meets = db.getMeetsForSchool(schoolid)
+		divers = db.getDiversAtSchool(schoolid)
 		return render_template('schoolprofile.html',schoolInfo=schoolInfo,meets=meets,divers=divers)
 	else:
 		return render_template('schools.html')
@@ -22,7 +22,7 @@ def schoolLogin():
     name = request.form['school']
     password = hashlib.sha1(request.form['pass']).hexdigest()
     response = [(1,),]
-    #response = db.schoolLogin(name,password)
+    response = db.schoolLogin(name,password)
     if len(response) != 0:
         session['school'] = response[0][0]
     return redirect(url_for('schools'))
@@ -34,8 +34,8 @@ def schoolMeetInfo(id):
 	meet = [1,'Rose-Hulman Dive Meet', '5500 Wabash Ave','Terre Haute','IN','47803','2014-02-29']
 	count = 13
 	divesheets = [[1,'Awesome Divesheet'],[2,'Easy Divesheet']]
-	#meet,count = db.getMeet(id)
-	#divesheets = db.getSheetsForMeet(id)
+	meet,count = db.getMeet(id)
+	divesheets = db.getSheetsForMeet(id)
 	return render_template('schoolmeetview.html',meet=meet,count=count,divesheets=divesheets)
 
 @app.route('/schools/scoresheet/<int:id>')
@@ -61,7 +61,7 @@ def createMeet():
 			if len(year) != 4 or len(day) != 2 or len(month) != 2:
 				message = 'Length of dates incorrect'
 			else:
-				#db.createMeet(name,address,city,state,zipcode,year,month,day,school)
+				db.createMeet(name,address,city,state,zipcode,year,month,day,school)
 				return redirect(url_for('schools'))
 		else:
 			message = 'All fields are required!'
