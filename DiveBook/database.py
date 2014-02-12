@@ -73,6 +73,10 @@ class Database:
         self.cursor.execute("SELECT id, name FROM DiveSheets WHERE diverID=%s AND meetID IS NULL;",[diverid])
         return self.cursor.fetchall()
 
+    def getSheetsForMeet(self, id):
+        self.cursor.execute("SELECT id, name FROM DiveSheets WHERE meetID=%s;",[id])
+        return self.cursor.fetchall()
+
 
     # -------------------------------------------------------------------------------
 

@@ -31,7 +31,16 @@ def schoolLogin():
 def schoolMeetInfo(id):
 	if 'school' not in session:
 		return redirect(url_for('schools'))
-	return 'nothing yet'
+	meet = [1,'Rose-Hulman Dive Meet', '5500 Wabash Ave','Terre Haute','IN','47803','2014-02-29']
+	count = 13
+	divesheets = [[1,'Awesome Divesheet'],[2,'Easy Divesheet']]
+	#meet,count = db.getMeet(id)
+	#divesheets = db.getSheetsForMeet(id)
+	return render_template('schoolmeetview.html',meet=meet,count=count,divesheets=divesheets)
+
+@app.route('/schools/scoresheet/<int:id>')
+def scoreSheet(id):
+	return "no bueno"
 
 @app.route('/schools/createmeet/',methods=['GET','POST'])
 def createMeet():
