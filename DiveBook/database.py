@@ -111,6 +111,11 @@ class Database:
         self.cursor.execute("SELECT id, title FROM Meets WHERE schoolID=%s;",[schoolid])
         return self.cursor.fetchall()
 
+    def createMeet(self,name,address,city,state,zipcode,year,month,day,school):
+        datein = year +'-'+month+'-'+day
+        self.cursor.execute("INSERT INTO Meets (title,address,city,state,zip,date,schoolID) VALUES (%s,%s,%s,%s,%s,%s,%s);",[name,address,city,state,zipcode,datein,school])
+        self.conn.commit()
+
     # --------------------------------------------------------------------------------
 
     # Account requests ---------------------------------------------------------------

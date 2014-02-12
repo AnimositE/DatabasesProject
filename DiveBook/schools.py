@@ -29,17 +29,44 @@ def schoolLogin():
 
 @app.route('/schools/meetinfo/<int:id>')
 def schoolMeetInfo(id):
+	if 'school' not in session:
+		return redirect(url_for('schools'))
 	return 'nothing yet'
 
 @app.route('/schools/createmeet/',methods=['GET','POST'])
 def createMeet():
-	return render_template('createmeet.html')
+	if 'school' not in session:
+		return redirect(url_for('schools'))
+	message = ''
+	if request.method == 'POST':
+		name = request.form['name']
+		address = request.form['address']
+		city = request.form['city']
+		state = request.form['state']
+		zipcode = request.form['zip']
+		year = request.form['year']
+		month = request.form['month']
+		day = request.form['day']
+		school = session['school']
+		if name and address and city and state and zipcode and year and month and day:
+			if len(year) != 4 or len(day) != 2 or len(month) != 2:
+				message = 'Length of dates incorrect'
+			else:
+				#db.createMeet(name,address,city,state,zipcode,year,month,day,school)
+				return redirect(url_for('schools'))
+		else:
+			message = 'All fields are required!'
+	return render_template('createmeet.html',message=message)
 
 @app.route('/schools/claimdiver/')
 def claimDiver():
+	if 'school' not in session:
+		return redirect(url_for('schools'))
 	return 'no bueno'
 
 @app.route('/schools/logout/')
 def schoolLogout():
-    session.pop('school', None)
-    return redirect(url_for('schools'))
+	if 'school' not in session:
+		return redirect(url_for('schools'))
+	session.pop('school', None)
+	return redirect(url_for('schools'))
