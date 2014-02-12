@@ -15,15 +15,17 @@ def sheet(id):
 	if 'id' not in session:
 		return redirect(url_for('index'))
     #TODO: Pull meet info and populate page
-	sheet = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet',[['A','5','Forward Dive','S','1.4','10','10','10','10','10','10','10','10','10','10'],[],]],]
+	sheet = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet',[['A','5','Forward Dive','S','1.4','10','10','10','10','10','10','10','10','10','10'],]],]
 	return render_template('divesheet.html', sheet=sheet)
 
 @app.route('/meets/<int:id>/sheet/<int:sheetid>')
 def registerMeet(id, sheetid):
 	if 'id' not in session:
 		return redirect(url_for('index'))
-    #TODO: Register a sheet
-	return "needs html" 
+	sheet = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet',[['A','5','Forward Dive','S','1.4','10','10','10','10','10','10','10','10','10','10'],]],]
+    # db.editMeetOfDiveSheets(id, sheetid)
+	# sheet = db.getDiveSheet(sheetid)
+	return render_template('divesheet.html', sheet=sheet)
 
 @app.route('/divesheets/create')
 def createDiveSheet():
@@ -37,7 +39,7 @@ def editDiveSheet(id):
 		return redirect(url_for('index'))
 	# Find the divesheet id in this list
 	# Pass the diverid to the database
-	sheet = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet',[['A','5','Forward Dive','S','1.4','10','10','10','10','10','10','10','10','10','10'],[],]],]
+	sheet = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet',[['A','5','Forward Dive','S','1.4','10','10','10','10','10','10','10','10','10','10'],]],]
 	#sheet = db.getDiveSheets(id) # SQL on divesheet id to get title, dives, etc
 	message = ""
 	if request.method == 'POST':
@@ -49,6 +51,3 @@ def editDiveSheet(id):
 		else:
 			message = "Title cannot be empty"
 	return render_template('editdivesheet.html',message=message, sheet=sheet)
-
-	
-#TODO: Run the queries when you click the save button on edit and create new divesheets

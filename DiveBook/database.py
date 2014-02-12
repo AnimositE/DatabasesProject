@@ -68,6 +68,10 @@ class Database:
     def getDiveSheets(self, diverid):
         self.cursor.execute("SELECT * FROM DiveSheets WHERE diverID=%s;",[diverid])
         return self.cursor.fetchall()
+	
+	def getDiveSheet(self, id, sheetid):
+        self.cursor.execute("SELECT * FROM DiveSheets WHERE diverID=%s AND id=%s;",[diverid,sheetid])
+        return self.cursor.fetchall()
 
     def getNonRegisteredDiveSheets(self, diverid):
         self.cursor.execute("SELECT id, name FROM DiveSheets WHERE diverID=%s AND meetID IS NULL;",[diverid])
@@ -77,7 +81,11 @@ class Database:
         self.cursor.execute("SELECT id, name FROM DiveSheets WHERE meetID=%s;",[id])
         return self.cursor.fetchall()
 
-
+	def editMeetOfDiveSheet(self, id, meet):
+        self.cursor.execute("UPDATE DiveSheets SET meetID=%s WHERE id=%s;",[meet,id])
+		self.conn.commit()
+        return self.cursor.fetchall()
+	
     # -------------------------------------------------------------------------------
 
     # DIVES ------------------------------------------------------------------------
