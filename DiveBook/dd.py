@@ -18,5 +18,5 @@ def ddPost():
     if twist != '0':
         name += ' ' + twist
     diveInfo = [1.4,'101']
-    diveInfo = db.getDD(name,height,position)
+    #diveInfo = db.getDD(name,height,position)
     return render_template('ddlookup.html',name=name,height=height,dd=diveInfo[0],number=diveInfo[1],position=position)

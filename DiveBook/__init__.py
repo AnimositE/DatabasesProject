@@ -1,9 +1,9 @@
 import os
 from flask import Flask, render_template, send_from_directory, request, session, redirect, url_for
-from database import Database
+#from database import Database
 
 db = ""
-db = Database()
+#db = Database()
 
 app = Flask(__name__)
 app.config.update(DEBUG = True,)
