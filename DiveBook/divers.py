@@ -21,7 +21,11 @@ def searchDivers():
 @app.route('/profile/<int:id>')
 def profile(id):
     #TODO: Generate profile page from diver id
-    return render_template('profile.html',profile=profile)
+    profile = ['Name', 'Email', 'Age', 'School', 'Division I']
+    favdives = ['Forward Dive', 'Back Tuck', 'Front 1 1/2']
+    #profile = db.getProfileInfo(id)
+    #favdives = db.getFavDives(id)
+    return render_template('profile.html',profile=profile, favdives=favdives)
 
 @app.route('/profile/')
 def viewprofile():
