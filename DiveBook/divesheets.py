@@ -8,7 +8,7 @@ def divesheets():
 	if 'id' not in session:
 		return redirect(url_for('index'))
 	sheets = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet','10.0'],[2,'My Other Dive Sheet','Rose-Hulman Dive Meet','10.0']]
-	sheets = db.getDiveSheets(session['id'])
+	#sheets = db.getDiveSheets(session['id'])
 	return render_template('divesheets.html',sheets=sheets)
 
 @app.route('/divesheets/<int:id>')
@@ -16,7 +16,8 @@ def sheet(id):
 	if 'id' not in session:
 		return redirect(url_for('index'))
 	sheet = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet',[[], ['2','5','Forward Dive','S','1.4','10','10','10','10','10','10','10','10','10','10','100'],]],]
-	sheet = db.getDiveSheet(session['id'],id)
+	#sheet = db.getDiveSheet(session['id'],id)
+	#sheet[0][3] = db.getScores(session['id'],sheet[0]) # TODO pull the dives through scores
 	return render_template('divesheet.html', sheet=sheet)
 
 @app.route('/meets/<int:id>/sheet/<int:sheetid>')
@@ -49,7 +50,7 @@ def createDiveSheet():
 		if not message:
 			id = 1
 			# Commit the sheet to the database, get the id back as id
-			id = db.createDiveSheet(sheet, session['id'])
+			#id = db.createDiveSheet(sheet, session['id'])
 			return redirect(url_for('sheet', id=id))
 	dives = [[1,'Forward Dive','Tuck',1],[2, 'Backward Dive','Tuck',3],[3,'Reverse Hurricane','Tuck',1]]
 	# dives = getDives()
@@ -98,5 +99,5 @@ def editDiveSheet(id):
 			#id = db.editDiveSheet(sheet,session['id'])
 			return redirect(url_for('sheet', id=id))
 	dives = [[1,'Forward Dive','Tuck',1],[2, 'Backward Dive','Tuck',3],[3,'Reverse Hurricane','Tuck',1]]
-	dives = db.getDoableDives(session['id'])
+	#dives = db.getDoableDives(session['id'])
 	return render_template('editdivesheet.html',message=message, sheet=sheet,dives=dives)
