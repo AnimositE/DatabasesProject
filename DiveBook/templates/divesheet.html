@@ -109,32 +109,9 @@
           </tr>
         </thead>
         <tbody>
-          <script type='text/javascript'>
-			x=0;
-		  </script>
-            {% for s in sheet[0][3] %}<tr>
-			  <td><script type='text/javascript'>
-				  x=x+1;
-				  document.write(x);
-			  </script></td>
-              <td>{{s[0]}}</td>
-              <td>{{s[1]}}</td>
-              <td>{{s[2]}}</td>
-              <td>{{s[3]}}</td>
-              <td>{{s[4]}}</td>
-              <td>{{s[5]}}</td>
-			  <td>{{s[6]}}</td>
-              <td>{{s[7]}}</td>
-              <td>{{s[8]}}</td>
-              <td>{{s[9]}}</td>
-              <td>{{s[10]}}</td>
-              <td>{{s[11]}}</td>
-			  <td>{{s[12]}}</td>
-              <td>{{s[13]}}</td>
-              <td>{{s[14]}}</td>
-              <td>{{s[15]}}</td>
-            </tr>{% endfor %}
-        </tbody>
+            {% for i in range(1,11) %}<tr>
+			  <td>{{i}}</td>{% for j in range(0,15) %}<td>{{sheet[0][3][1][j]}}</td>{% endfor %}</tr>{% endfor %}
+          </tbody>
       </table>
       <ul class="list-group"></ul>
       <a class="btn btn-primary" href="/divesheets/1/edit">Edit</a> <a class="btn btn-primary" href="/divesheets/">Back</a>

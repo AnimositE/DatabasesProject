@@ -82,12 +82,10 @@
     <div class="container">
       <h1>Create New Dive Sheet</h1>
       <ul class="list-group"></ul>
-      <form>
+      <form method="POST" action="/divesheets/create">
         <div class="form-group">
           <label class="control-label">Title</label>
-          <div class="controls">
-            <input type="text" class="form-control" placeholder="Title">
-          </div>
+          <input type="text" class="form-control" placeholder="Title" name="title">
         </div>
         <label class="form-label">Register for a Meet</label>
         <select class="form-control">
@@ -116,35 +114,20 @@
               <th>Cumulative Total Award</th>
             </tr>
           </thead>
-          <tbody>
-          <script type='text/javascript'>
-			x=0;
-		  </script>
-            {% for s in range(0, 15) %}<tr>
-			  <td><script type='text/javascript'>
-				  x=x+1;
-				  document.write(x);
-			  </script></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-			  <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-			  <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>{% endfor %}
-          </tbody>
+			<tbody>
+			  {% for i in range(1,11) %}<tr>
+				<td>{{i}}</td>
+				  <td><input type="text" class="form-control" name="diveno{{i}}" placeholder={{sheet[0][3][1][0]}}>
+				  <td><input type="text" class="form-control" name="level{{i}}" placeholder={{sheet[0][3][1][1]}}>
+				  <td><input type="text" class="form-control" name="description{{i}}" placeholder={{sheet[0][3][1][2]}}>
+				  <td><input type="text" class="form-control" name="position{{i}}" placeholder={{sheet[0][3][1][3]}}>
+				  <td><input type="text" class="form-control" name="dd{{i}}" placeholder={{sheet[0][3][1][4]}}>
+				</td>
+			  </tr>{% endfor %}
+			</tbody>
         </table>
-        <a class="btn btn-primary" href="/divesheets/">Save</a><hr>
+        <button class="btn btn-primary" type="submit">Save</button>
+		{% if message %}<span class="label label-danger">{{ message }}</span>{% endif %}<hr>
       </form>
       <footer>
         <p>&copy; DiveBook 2014</p>
