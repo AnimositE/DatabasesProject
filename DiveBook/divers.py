@@ -6,7 +6,7 @@ from DiveBook import app
 @app.route('/divers/')
 def divers():
     divers = [[1,'Mason','Schneider','Rose-Hulman'],[2,'Mark','Hein','Rose-Hulman']]
-    #divers = db.getDivers()
+    divers = db.getDivers()
     return render_template('divers.html',divers=divers)
 
 @app.route('/divers/',methods=['POST'])
@@ -15,7 +15,7 @@ def searchDivers():
     lname = '%' + request.form['last'] + '%'
     school = '%' + request.form['school'] + '%'
     divers = [[1,'Mason','Schneider','Rose-Hulman'],]
-    #divers = db.searchDivers(fname, lname, school)
+    divers = db.searchDivers(fname, lname, school)
     return render_template('divers.html',divers=divers)
 
 @app.route('/profile/<int:id>')
