@@ -80,7 +80,7 @@
     </div>
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="container">
-      <h1 class="page-header">Thelonius's Profile<br></h1>
+      <h1 class="page-header">{{profile[0]|striptags}}'s Profile<br></h1>
       <div class="row">
         <div class="col-md-4">
           <div class="panel panel-default">
@@ -88,17 +88,17 @@
               <img width="330px" src="http://cdn9.meghantelpner.com/wp-content/uploads/2009/01/40709058coconut.jpg">
             </div>
             <div class="panel-footer">
-              <h3>Thelonious Coco &nbsp;</h3>
+              <h3> {{profile[0]|striptags}} &nbsp;</h3>
             </div>
             <ul class="list-group">
               <li class="list-group-item">
-                <i class="fa fa-envelope-o"></i>&nbsp;cocobaby@ilovediving.com</li>
+                <i class="fa fa-envelope-o"></i>&nbsp;{{profile[1]|striptags}}</li>
               <li class="list-group-item">
-                <i class="fa fa-user"></i>&nbsp;Age 19</li>
+                <i class="fa fa-user"></i>&nbsp;Age {{profile[2]|striptags}}</li>
               <li class="list-group-item">
-                <i class="fa fa-home"></i>&nbsp;Rose-Hulman Institute of Technology</li>
+                <i class="fa fa-home"></i>&nbsp;{{profile[3]|striptags}}</li>
               <li class="list-group-item">
-                <font face="FontAwesome"><span style="line-height: 14px;"><i class="fa fa-square-o"></i>&nbsp;Division III</span></font>
+                <font face="FontAwesome"><span style="line-height: 14px;"><i class="fa fa-square-o"></i>&nbsp;{{profile[4]|striptags}}</span></font>
               </li>
             </ul>
           </div>
@@ -107,7 +107,7 @@
         <div class="col-md-8">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <i class="fa fa-list-alt"></i>&nbsp;Thelonius's Meets
+              <i class="fa fa-list-alt"></i>&nbsp;{{profile[0]}|striptags}'s Meets
             </div>
             <ul class="list-group">
               <li class="list-group-item">First Item</li>
@@ -119,10 +119,12 @@
           </div>
           <div class="panel panel-default">
             <div class="panel-heading">
-              <i class="fa fa-heart"></i>&nbsp;Thelonius's Favourite Dive
+              <i class="fa fa-heart"></i>&nbsp;{{profile[0]|striptags}}}'s Favourite Dive
             </div>
             <ul class="list-group">
-              <li class="list-group-item">First Item</li>
+              {% for favdive in favdives %}
+              <li class="list-group-item">{{favdive}}</li>
+              {% endfor %}
             </ul>
             <div class="panel-footer">&nbsp;
             </div>
