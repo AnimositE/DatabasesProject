@@ -125,8 +125,8 @@ class Database:
         self.cursor.execute("SELECT * FROM Dives;")
         return self.cursor.fetchall()
 
-    def getDoableDives(self):
-        self.cursor.execute("SELECT * FROM DoableDives")
+    def getDoableDives(self, diverid):
+        self.cursor.execute("SELECT id, name, position, height FROM DoableDives WHERE diverid=%s;", [diverid])
 
     # -------------------------------------------------------------------------------
 

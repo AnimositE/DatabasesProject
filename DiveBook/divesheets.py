@@ -98,5 +98,5 @@ def editDiveSheet(id):
 			#id = db.editDiveSheet(sheet,session['id'])
 			return redirect(url_for('sheet', id=id))
 	dives = [[1,'Forward Dive','Tuck',1],[2, 'Backward Dive','Tuck',3],[3,'Reverse Hurricane','Tuck',1]]
-	#dives = db.getDives
+	dives = db.getDoableDives(session['id'])
 	return render_template('editdivesheet.html',message=message, sheet=sheet,dives=dives)
