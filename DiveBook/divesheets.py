@@ -25,7 +25,7 @@ def registerMeet(id, sheetid):
 		return redirect(url_for('index'))
 	sheet = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet',[[], ['B','5','Forward Dive','S','1.4','10','10','10','10','10','10','10','10','10','10','100'],]],]
 	#db.editMeetOfDiveSheets(id, sheetid)
-	#sheet = db.getDiveSheet(sheetid)
+	sheet = db.getDiveSheet(sheetid)
 	return render_template('divesheet.html', sheet=sheet)
 
 @app.route('/divesheets/create',methods=['GET','POST'])
@@ -66,7 +66,7 @@ def createDiveSheet():
 		if not message:
 			id = 1
 			# Commit the sheet to the database, get the id back as id
-			# db.createSheet(sheet)
+			id = db.createDiveSheet(sheet, session['id'])
 			return redirect(url_for('sheet', id=id))
 	return render_template('createdivesheet.html',message=message, sheet=sheet)
 	
@@ -110,6 +110,6 @@ def editDiveSheet(id):
 		if not message:
 			id = 1
 			# Commit the sheet to the database, get the id back as id
-			# db.createSheet(sheet)
+			id = db.editDiveSheet(sheet,session['id'])
 			return redirect(url_for('sheet', id=id))
 	return render_template('editdivesheet.html',message=message, sheet=sheet)
