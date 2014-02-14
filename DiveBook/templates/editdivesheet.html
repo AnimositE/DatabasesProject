@@ -116,9 +116,16 @@
             </tr>
           </thead>
           <tbody>
-            {% for i in range(1,11) %}<tr>
-			  <td>{{i}}</td>{% for j in range(0,15) %}<td>{{sheet[0][3][1][j]}}</td>{% endfor %}</tr>{% endfor %}
-          </tbody>
+			  {% for i in range(1,11) %}<tr>
+				<td>{{i}}</td>
+				  <td><input type="text" class="form-control" name="diveno{{i}}" value={{sheet[0][3][1][0]}}>
+				  <td><input type="text" class="form-control" name="level{{i}}" value={{sheet[0][3][1][1]}}>
+				  <td><input type="text" class="form-control" name="description{{i}}" value={{sheet[0][3][1][2]}}>
+				  <td><input type="text" class="form-control" name="position{{i}}" value={{sheet[0][3][1][3]}}>
+				  <td><input type="text" class="form-control" name="dd{{i}}" value={{sheet[0][3][1][4]}}>
+				</td>
+			  </tr>{% endfor %}
+			</tbody>
         </table>
         <button type="submit" class="btn btn-primary">Save</button>
         <a class="btn btn-danger">Delete</a> <a class="btn btn-primary" href="/divesheets/{{sheet[0][0]}}">Back</a> {% if message %}

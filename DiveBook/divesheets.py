@@ -81,10 +81,35 @@ def editDiveSheet(id):
 	message = ""
 	if request.method == 'POST':
 		if request.form['title']:
-			title = request.form['title'] # This doesnt do shit
+			sheet[0][2] = request.form['title']
 			# SQL to change the divesheet title
-			# db.?
-			return redirect(url_for('sheet', id=id))
 		else:
 			message = "Title cannot be empty"
+		for i in range(1,11):
+			i = str(i)
+			if request.form['diveno'+i]:
+				sheet[0][3][1][0] = request.form['diveno'+i]
+			else:
+				message = "Dive number " + str(i) + " cannot be empty!"
+			if request.form['level'+i]:
+				sheet[0][3][1][1] = request.form['level'+i]
+			else:
+				message = "Level " + str(i) + " cannot be empty!"
+			if request.form['description'+i]:
+				sheet[0][3][1][2] = request.form['description'+i]
+			else:
+				message = "Description " + str(i) + " cannot be empty!"
+			if request.form['position'+i]:
+				sheet[0][3][1][3] = request.form['position'+i]
+			else:
+				message = "Position " + str(i) + " cannot be empty!"
+			if request.form['dd'+i]:
+				sheet[0][3][1][4] = request.form['dd'+i]
+			else:
+				message = "DD " + str(i) + " cannot be empty!"
+		if not message:
+			id = 1
+			# Commit the sheet to the database, get the id back as id
+			# db.createSheet(sheet)
+			return redirect(url_for('sheet', id=id))
 	return render_template('editdivesheet.html',message=message, sheet=sheet)
