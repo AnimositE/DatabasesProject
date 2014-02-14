@@ -90,7 +90,7 @@ class Database:
         return self.cursor.fetchall()
 	
 	def createDiveSheet(self, sheet, diverid):
-        self.cursor.execute("INSERT INTO DiveSheets(diverID,name) VALUES(%s,%s) RETURNING id;",[diverid,sheet[0][1]])
+		self.cursor.execute("INSERT INTO DiveSheets(diverID,name) VALUES(%s,%s) RETURNING id;",[diverid,sheet[0][1]])
 		id = self.cursor.fetchall()
 		for x in range(1,10): #sheet[0][3]
 			self.cursor.execute("INSERT INTO Scores(sheetID,diveID) VALUES(%s,%s);",[id,sheet[0][3][x][2]])
@@ -98,7 +98,7 @@ class Database:
         return id
 		
 	def editDiveSheeet(self, sheet, diverid):
-        self.cursor.execute("INSERT INTO DiveSheets(diverID,name) VALUES(%s,%s) RETURNING id;",[diverid,sheet[0][1]])
+		self.cursor.execute("INSERT INTO DiveSheets(diverID,name) VALUES(%s,%s) RETURNING id;",[diverid,sheet[0][1]])
 		id = self.cursor.fetchall()
 		for x in range(1,10): #sheet[0][3]
 			self.cursor.execute("INSERT INTO Scores(sheetID,diveID) VALUES(%s,%s);",[id,sheet[0][3][x][2]])
