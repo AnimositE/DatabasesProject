@@ -78,7 +78,7 @@ class Database:
         return self.cursor.fetchall()
 
     def getDiveSheet(self, id, sheetid):
-        self.cursor.execute("SELECT * FROM DiveSheets WHERE diverID=%s AND id=%s;",[diverid,sheetid])
+        self.cursor.execute("SELECT * FROM DiveSheets WHERE diverID=%s AND id=%s;",[id,sheetid])
         return self.cursor.fetchall()
 
     def getNonRegisteredDiveSheets(self, diverid):
@@ -124,6 +124,9 @@ class Database:
     def getDives(self):
         self.cursor.execute("SELECT * FROM Dives;")
         return self.cursor.fetchall()
+
+    def getDoableDives(self):
+        self.cursor.execute("SELECT * FROM DoableDives")
 
     # -------------------------------------------------------------------------------
 
