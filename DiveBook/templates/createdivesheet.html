@@ -87,44 +87,23 @@
           <label class="control-label">Title</label>
           <input type="text" class="form-control" placeholder="Title" name="title">
         </div>
-        <label class="form-label">Register for a Meet</label>
-        <select class="form-control">
-          <option>Rose-Hulman Dive Meet</option>
-        </select>
 		<br>
         <table class="table table-condensed table-bordered">
           <thead>
             <tr>
               <th>Dive Order</th>
-              <th>Dive No. &amp; Pos. Ltr. (A,B,C,D)</th>
-              <th>Level 5/7.5/10</th>
-              <th>Written Description</th>
-              <th>Position (S,P,T,F)</th>
-              <th>D.D.</th>
-              <th>Judge 1</th>
-              <th>Judge 2</th>
-              <th>Judge 3</th>
-              <th>Judge 4</th>
-              <th>Judge 5</th>
-              <th>Judge 6</th>
-              <th>Judge 7</th>
-              <th>Judge 8</th>
-              <th>Judge 9</th>
-              <th>Judges Total</th>
-              <th>Cumulative Total Award</th>
+              <th>Dive (Dive Name, Position, Height)</th>
             </tr>
           </thead>
 			<tbody>
 			  {% for i in range(1,11) %}<tr>
 				<td>{{i}}</td>
-				  <td><input type="text" class="form-control" name="diveno{{i}}" placeholder={{sheet[0][3][1][0]}}>
-				  <td><input type="text" class="form-control" name="level{{i}}" placeholder={{sheet[0][3][1][1]}}>
-				  <td><input type="text" class="form-control" name="description{{i}}" placeholder={{sheet[0][3][1][2]}}>
-				  <td><input type="text" class="form-control" name="position{{i}}" placeholder={{sheet[0][3][1][3]}}>
-				  <td><input type="text" class="form-control" name="dd{{i}}" placeholder={{sheet[0][3][1][4]}}>
-				{% for j in range(0,11) %}
-				  <td>{{sheet[0][3][1][j+5]}}
-				{% endfor %}
+        <td>
+          <select class="form-control" name="dive{{i}}">
+           {% for dive in dives %}
+           <option value="{{dive[0]}}">{{dive[1]}} {{dive[2]}} Height:{{dive[3]}}</option>
+           {% endfor %}
+          </select>
 				</td>
 			  </tr>{% endfor %}
 			</tbody>
