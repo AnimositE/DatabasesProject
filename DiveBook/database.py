@@ -74,7 +74,7 @@ class Database:
     # DIVESHEETS --------------------------------------------------------------------
 
     def getDiveSheets(self, diverid):
-        self.cursor.execute("SELECT * FROM DiveSheets WHERE diverID=%s;",[diverid])
+        self.cursor.execute("SELECT id, name, title, finalScore FROM DiveSheets,Meets WHERE meetID=Meets.id, diverID=%s;",[diverid])
         return self.cursor.fetchall()
 
     def getDiveSheet(self, id, sheetid):

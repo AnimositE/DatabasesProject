@@ -93,20 +93,13 @@
           </tr>
         </thead>
         <tbody>
+          {% for sheet in sheets %}
           <tr>
-            <td>
-              <a href="/divesheets/1">My Super Awesome Dive Sheet</a>
-            </td>
-            <td>Rose-Hulman Dive Meet</td>
-            <td>10.0</td>
+            <td><a href="/divesheets/{{sheet[0]}}">{{sheet[1]|striptags}}</a></td>
+            <td>{{sheet[2]|striptags}}</td>
+            <td>{{sheet[3]|striptags}}</td>
           </tr>
-          <tr>
-            <td>
-              <a href="/divesheets/1">My Not So Cool Dive Sheet</a>
-            </td>
-            <td>Not Registered</td>
-            <td></td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
       <hr>

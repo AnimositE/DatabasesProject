@@ -7,7 +7,8 @@ from DiveBook import app
 def divesheets():
 	if 'id' not in session:
 		return redirect(url_for('index'))
-	sheets = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet','10.0'],]
+	sheets = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet','10.0'],[2,'My Other Dive Sheet','Rose-Hulman Dive Meet','10.0']]
+	#sheets = db.getDiveSheets(session['id'])
 	return render_template('divesheets.html',sheets=sheets)
 
 @app.route('/divesheets/<int:id>')
@@ -15,7 +16,6 @@ def sheet(id):
 	if 'id' not in session:
 		return redirect(url_for('index'))
 	sheet = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet',[[], ['2','5','Forward Dive','S','1.4','10','10','10','10','10','10','10','10','10','10','100'],]],]
-	#TODO: Pull meet info and populate page
 	#sheet = db.getDiveSheet(session['id'],id)
 	return render_template('divesheet.html', sheet=sheet)
 
@@ -25,7 +25,7 @@ def registerMeet(id, sheetid):
 		return redirect(url_for('index'))
 	sheet = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet',[[], ['2','5','Forward Dive','S','1.4','10','10','10','10','10','10','10','10','10','10','100'],]],]
 	#db.editMeetOfDiveSheets(id, sheetid)
-	sheet = db.getDiveSheet(sheetid)
+	#sheet = db.getDiveSheet(sheetid)
 	return render_template('divesheet.html', sheet=sheet)
 
 @app.route('/divesheets/create',methods=['GET','POST'])
@@ -95,7 +95,7 @@ def editDiveSheet(id):
 		if not message:
 			id = 1
 			# Commit the sheet to the database, get the id back as id
-			id = db.editDiveSheet(sheet,session['id'])
+			#id = db.editDiveSheet(sheet,session['id'])
 			return redirect(url_for('sheet', id=id))
 	dives = [[1,'Forward Dive','Tuck',1],[2, 'Backward Dive','Tuck',3],[3,'Reverse Hurricane','Tuck',1]]
 	#dives = db.getDives
