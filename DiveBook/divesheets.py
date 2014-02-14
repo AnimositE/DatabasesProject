@@ -14,17 +14,18 @@ def divesheets():
 def sheet(id):
 	if 'id' not in session:
 		return redirect(url_for('index'))
+	sheet = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet',[[], ['B','5','Forward Dive','S','1.4','10','10','10','10','10','10','10','10','10','10','100'],]],]
     #TODO: Pull meet info and populate page
-	sheet = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet',[[], ['B','5','Forward Dive','S','1.4','10','10','10','10','10','10','10','10','10','10'],]],]
+	#sheet = db.getDiveSheet(session['id'],id)
 	return render_template('divesheet.html', sheet=sheet)
 
 @app.route('/meets/<int:id>/sheet/<int:sheetid>')
 def registerMeet(id, sheetid):
 	if 'id' not in session:
 		return redirect(url_for('index'))
-	sheet = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet',[[], ['B','5','Forward Dive','S','1.4','10','10','10','10','10','10','10','10','10','10'],]],]
-	# db.editMeetOfDiveSheets(id, sheetid)
-	# sheet = db.getDiveSheet(sheetid)
+	sheet = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet',[[], ['B','5','Forward Dive','S','1.4','10','10','10','10','10','10','10','10','10','10','100'],]],]
+	#db.editMeetOfDiveSheets(id, sheetid)
+	#sheet = db.getDiveSheet(sheetid)
 	return render_template('divesheet.html', sheet=sheet)
 
 @app.route('/divesheets/create',methods=['GET','POST'])
@@ -32,9 +33,8 @@ def createDiveSheet():
 	if 'id' not in session:
 		return redirect(url_for('index'))
 	message = ""
-	sheet = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet',[[], ['B','5','Forward Dive','S','1.4','10','10','10','10','10','10','10','10','10','10'],]],]
 	# Create default sheet to be created
-	# db.
+	sheet = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet',[[], ['B','5','Forward Dive','S','1.4','10','10','10','10','10','10','10','10','10','10','100'],]],]
 	if request.method == 'POST':
 		if request.form['title']:
 			sheet[0][2] = request.form['title']
@@ -76,7 +76,7 @@ def editDiveSheet(id):
 		return redirect(url_for('index'))
 	# Find the divesheet id in this list
 	# Pass the diverid to the database
-	sheet = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet',[[], ['B','5','Forward Dive','S','1.4','10','10','10','10','10','10','10','10','10','10'],]],]
+	sheet = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet',[[], ['B','5','Forward Dive','S','1.4','10','10','10','10','10','10','10','10','10','10','100'],]],]
 	#sheet = db.getDiveSheets(id) # SQL on divesheet id to get title, dives, etc
 	message = ""
 	if request.method == 'POST':
