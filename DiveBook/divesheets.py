@@ -8,7 +8,7 @@ def divesheets():
 	if 'id' not in session:
 		return redirect(url_for('index'))
 	sheets = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet','10.0'],[2,'My Other Dive Sheet','Rose-Hulman Dive Meet','10.0']]
-	#sheets = db.getDiveSheets(session['id'])
+	sheets = db.getDiveSheets(session['id'])
 	return render_template('divesheets.html',sheets=sheets)
 
 @app.route('/divesheets/<int:id>')
