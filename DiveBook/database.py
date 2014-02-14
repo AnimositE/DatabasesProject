@@ -167,7 +167,9 @@ class Database:
         if len(registered) > 0:
             return False
         else:
-            self.cursor.execute("INSERT INTO Divers (email, hashpass) VALUES (%s, %s);",[email, password])
+            self.cursor.execute("INSERT INTO Divers (email, hashpass) VALUES (%s, %s) RETURNING id;",[email, password])
+            id = self.cursor.fetchall()[0][0]
+            self.cursor.execute("INSERT INTO Profiles (diverID) VALUES (%s);",[id])
             self.conn.commit()
             return True
 
