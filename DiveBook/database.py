@@ -48,6 +48,14 @@ class Database:
         self.cursor.execute("SELECT fName, lName FROM Profiles WHERE schoolID=%s;",[schoolid])
         return self.cursor.fetchall()
 
+    def claimDiver(self, email, schoolid):
+        self.cursor.execute("SELECT * FROM Divers WHERE email=%s;",[email])
+        divers = self.cursor.fetchall()
+        if len(divers) == 0:
+            return
+        self.cursor.execute("UPDATE Profiles SET schoolID=%s WHERE diverID=(SELECT id FROM Divers WHERE email=%s);",[schoolid, email])
+        self.conn.commit()
+
     # -------------------------------------------------------------------------------
 
     # SCHOOLS ------------------------------------------------------------------------
@@ -68,8 +76,8 @@ class Database:
     def getDiveSheets(self, diverid):
         self.cursor.execute("SELECT * FROM DiveSheets WHERE diverID=%s;",[diverid])
         return self.cursor.fetchall()
-	
-	def getDiveSheet(self, id, sheetid):
+
+    def getDiveSheet(self, id, sheetid):
         self.cursor.execute("SELECT * FROM DiveSheets WHERE diverID=%s AND id=%s;",[diverid,sheetid])
         return self.cursor.fetchall()
 
@@ -81,11 +89,11 @@ class Database:
         self.cursor.execute("SELECT id, name FROM DiveSheets WHERE meetID=%s;",[id])
         return self.cursor.fetchall()
 
-	def editMeetOfDiveSheet(self, id, meet):
+    def editMeetOfDiveSheet(self, id, meet):
         self.cursor.execute("UPDATE DiveSheets SET meetID=%s WHERE id=%s;",[meet,id])
-		self.conn.commit()
+        self.conn.commit()
         return self.cursor.fetchall()
-	
+
     # -------------------------------------------------------------------------------
 
     # DIVES ------------------------------------------------------------------------

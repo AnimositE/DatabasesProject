@@ -67,11 +67,17 @@ def createMeet():
 			message = 'All fields are required!'
 	return render_template('createmeet.html',message=message)
 
-@app.route('/schools/claimdiver/')
+@app.route('/schools/claimdiver/',methods=['GET','POST'])
 def claimDiver():
 	if 'school' not in session:
 		return redirect(url_for('schools'))
-	return 'no bueno'
+	if request.method == 'POST':
+		email = request.form['email']
+		schoolid = session['school']
+		if email:
+			#db.claimDiver(email,schoolid)
+			return redirect(url_for('schools'))
+	return render_template('claimdiver.html')
 
 @app.route('/schools/logout/')
 def schoolLogout():
