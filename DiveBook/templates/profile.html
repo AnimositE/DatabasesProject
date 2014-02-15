@@ -119,11 +119,15 @@
           </div>
           <div class="panel panel-default">
             <div class="panel-heading">
-              <i class="fa fa-heart"></i>&nbsp;{{profile[0]|striptags}}'s Favourite Dive
+              <i class="fa fa-heart"></i>&nbsp;Dives That {{profile[0]|striptags}} Can Do:
             </div>
             <ul class="list-group">
-              {% for favdive in favdives %}
-              <li class="list-group-item">{{favdive}}</li>
+              {% for dive in doabledives %}
+              {% if dive==profile[5] %}
+              <li class="list-group-item">{{dive}} is my favourite dive</li>
+              {% else %}
+              <li class="list-group-item">{{dive}}</li>
+              {% endif %}
               {% endfor %}
             </ul>
             <div class="panel-footer">&nbsp;
