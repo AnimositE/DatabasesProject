@@ -88,17 +88,17 @@
               <img width="330px" src="http://cdn9.meghantelpner.com/wp-content/uploads/2009/01/40709058coconut.jpg">
             </div>
             <div class="panel-footer">
-              <h3> {{profile[0]|striptags}} &nbsp;</h3>
+              <h3> {{profile[0]|striptags}} {{profile[1]|striptags}} &nbsp;</h3>
             </div>
             <ul class="list-group">
               <li class="list-group-item">
-                <i class="fa fa-envelope-o"></i>&nbsp;{{profile[1]|striptags}}</li>
+                <i class="fa fa-envelope-o"></i>&nbsp;{{profile[2]|striptags}}</li>
               <li class="list-group-item">
-                <i class="fa fa-user"></i>&nbsp;Age {{profile[2]|striptags}}</li>
+                <i class="fa fa-user"></i>&nbsp;Age {{profile[3]|striptags}}</li>
               <li class="list-group-item">
-                <i class="fa fa-home"></i>&nbsp;{{profile[3]|striptags}}</li>
+                <i class="fa fa-home"></i>&nbsp;{{profile[4]|striptags}}</li>
               <li class="list-group-item">
-                <font face="FontAwesome"><span style="line-height: 14px;"><i class="fa fa-square-o"></i>&nbsp;{{profile[4]|striptags}}</span></font>
+                <font face="FontAwesome"><span style="line-height: 14px;"><i class="fa fa-square-o"></i>&nbsp;Division {{profile[5]|striptags}}</span></font>
               </li>
             </ul>
           </div>
@@ -123,7 +123,7 @@
             </div>
             <ul class="list-group">
               {% for dive in doabledives %}
-              {% if dive==profile[5] %}
+              {% if dive==profile[6] %}
               <li class="list-group-item">{{dive}} is my favourite dive</li>
               {% else %}
               <li class="list-group-item">{{dive}}</li>

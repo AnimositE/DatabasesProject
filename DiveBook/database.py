@@ -25,7 +25,11 @@ class Database:
 
     def getDiverProfile(self, diverid):
         # TODO: pull meets
-        self.cursor.execute("SELECT email, fName, lName, age, favoriteDive FROM Divers JOIN Profiles ON id = diverID WHERE id = %s;",[diverid])
+        self.cursor.execute("SELECT fName, lName, email, age, Schools.name, division, favoriteDive FROM Divers JOIN Profiles ON id = diverID JOIN Schools ON schoolID = Schools.id WHERE id = %s;",[diverid])
+        return self.cursor.fetchall()
+
+    def getDoableDivesName(self, diverid):
+        self.cursor.execute("SELECT name FROM Doable JOIN Dives ON diveID = id WHERE diverID = %s;",[diverid])
         return self.cursor.fetchall()
 
     def searchDivers(self, fname, lname, school):
