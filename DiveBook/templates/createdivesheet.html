@@ -100,7 +100,7 @@
 				<td>{{i}}</td>
         <td>
           <select class="form-control" name="dive{{i}}">
-           {% for dive in dives %}
+           {% for dive in doableDives %}
             <option value="{{dive[0]|striptags}}">
              {{dive[1]|striptags}} {{dive[2]|striptags}} Height:{{dive[3]|striptags}}
             </option>
