@@ -35,7 +35,7 @@ def createDiveSheet():
 		return redirect(url_for('index'))
 	message = ""
 	# Create default sheet to be created
-	title = ['Default Sheet']
+	title = None
 	doableDives = [[1,'Forward Dive','Tuck',1],[2, 'Backward Dive','Tuck',3],[3,'Reverse Hurricane','Tuck',1]]
 	doableDives = db.getDoableDives(session['id'])
 	dives = []
@@ -50,7 +50,7 @@ def createDiveSheet():
 			else:
 				message = "Dive number " + str(i) + " cannot be empty!"
 		if not message:
-			id = 1
+			id = [1]
 			# Commit the sheet to the database, get the id back as id
 			id = db.createDiveSheet(title, dives, session['id'])
 			return redirect(url_for('sheet', id=id[0]))
