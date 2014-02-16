@@ -148,6 +148,7 @@ class Database:
 
     def getDoableDives(self, diverid):
         self.cursor.execute("SELECT id, name, position, height FROM DoableDives WHERE diverid=%s;", [diverid])
+        return self.cursor.fetchall()
 
     # -------------------------------------------------------------------------------
 
