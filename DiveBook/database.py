@@ -95,7 +95,7 @@ class Database:
 
     def createDiveSheet(self, sheet, dives, diverid):
         self.cursor.execute("INSERT INTO DiveSheets (diverID,name) VALUES (%s,%s) RETURNING id;",[diverid,sheet[1]])
-        id = self.cursor.fetchall()[0]
+        id = self.cursor.fetchall()[0][0]
         for dive in dives:
             self.cursor.execute("INSERT INTO Scores (sheetID,diveID) VALUES (%s,%s);",[id,dive])
         self.conn.commit()
