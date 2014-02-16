@@ -64,7 +64,7 @@ def editDiveSheet(id):
 	sheet = db.getDiveSheet(id)
 	doableDives = [[1,'Forward Dive','Tuck',1],[2, 'Backward Dive','Tuck',3],[3,'Reverse Hurricane','Tuck',1]]
 	doableDives = db.getDoableDives(session['id'])
-	dives = [1,2,3]
+	dives = [3,1,1,1,1,1,1,1,1,1,1]
 	dives=db.getIdsInSheet(id)
 	sheet = sheet[0]
 	message = ""
@@ -74,13 +74,13 @@ def editDiveSheet(id):
 			# SQL to change the divesheet title
 		else:
 			message = "Title cannot be empty"
-		for i in dives:
+		for i in range(0,10):
 			if request.form['dive'+str(i)]:
-				dives[i-1] = request.form['dive'+str(i)] # This is an ID
+				dives[i] = request.form['dive'+str(i)] # This is an ID
 			else:
 				message = "Dive number " + str(i) + " cannot be empty!"
 		if not message:
 			# Commit the sheet to the database, get the id back as id
-			db.editDiveSheet(sheet, dives, session['id'])
+			#db.editDiveSheet(sheet, dives, session['id'])
 			return redirect(url_for('sheet', id=id))
 	return render_template('editdivesheet.html',message=message, sheet=sheet,dives=dives,doableDives=doableDives)
