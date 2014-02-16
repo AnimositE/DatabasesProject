@@ -82,7 +82,7 @@ class Database:
         return self.cursor.fetchall()
 
     def getDiveSheet(self, id):
-        self.cursor.execute("SELECT * FROM DiveSheets WHERE id=%s;",[id])
+        self.cursor.execute("SELECT id, name, title, finalScore FROM DiveSheets WHERE id=%s;",[id])
         return self.cursor.fetchall()
 
     def getNonRegisteredDiveSheets(self, diverid):
