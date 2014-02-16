@@ -85,7 +85,7 @@
       <form method="POST" action="/divesheets/create">
         <div class="form-group">
           <label class="control-label">Title</label>
-          <input type="text" class="form-control" placeholder="Title" name="title">
+          <input type="text" class="form-control" placeholder="Title" name="title" {% if title not null %} value={{title}}{% endif}>
         </div>
 		<br>
         <table class="table table-condensed table-bordered">
