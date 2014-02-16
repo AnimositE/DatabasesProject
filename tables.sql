@@ -64,5 +64,3 @@ CREATE TABLE Scores (
 CREATE VIEW DoableDives AS (SELECT id, name, position, height, diverID FROM Dives JOIN Doable ON Dives.id=Doable.diveID);
 
 
-
-

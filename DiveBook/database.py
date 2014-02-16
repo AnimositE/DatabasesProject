@@ -133,7 +133,7 @@ class Database:
         return ['NOT FOUND', '000', '']
 
     def addDoable(self, diver, id):
-        self.cursor.execute("INSERT INTO Doable (diverID, diveID) VALUES (%s, %s);",[diver,id])
+        self.cursor.execute("INSERT INTO Doable (diverID, diveID) SELECT %s, %s WHERE NOT EXISTS (SELECT 1 FROM Doable WHERE diverID=%s AND diveID=%s);",[diver,id,diver,id])
         self.cursor.commit()
 
     def getDives(self):
