@@ -36,8 +36,8 @@ def createDiveSheet():
 	message = ""
 	# Create default sheet to be created
 	sheet = [1,'My Super Awesome Dive Sheet','']
-	DoableDives = [[1,'Forward Dive','Tuck',1],[2, 'Backward Dive','Tuck',3],[3,'Reverse Hurricane','Tuck',1]]
-	DoableDives = db.getDoableDives(session['id'])
+	doableDives = [[1,'Forward Dive','Tuck',1],[2, 'Backward Dive','Tuck',3],[3,'Reverse Hurricane','Tuck',1]]
+	doableDives = db.getDoableDives(session['id'])
 	dives = []
 	if request.method == 'POST':
 		if request.form['title']:
@@ -54,7 +54,7 @@ def createDiveSheet():
 			# Commit the sheet to the database, get the id back as id
 			id = db.createDiveSheet(sheet, dives, session['id'])
 			return redirect(url_for('sheet', id=id[0]))
-	return render_template('createdivesheet.html',message=message, sheet=sheet, dives=DoableDives)
+	return render_template('createdivesheet.html',message=message, sheet=sheet, doableDives=doableDives)
 	
 @app.route('/divesheets/<int:id>/edit',methods=['GET','POST'])
 def editDiveSheet(id):
