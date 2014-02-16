@@ -101,7 +101,9 @@
         <td>
           <select class="form-control" name="dive{{i}}">
            {% for dive in dives %}
-           <option value="{{dive[0]|striptags}}">{{dive[1]|striptags}} {{dive[2]|striptags}} Height:{{dive[3]|striptags}}</option>
+            <option value="{{dive[0]|striptags}}">
+             {{dive[1]|striptags}} {{dive[2]|striptags}} Height:{{dive[3]|striptags}}
+            </option>
            {% endfor %}
           </select>
 				</td>

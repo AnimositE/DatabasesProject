@@ -93,21 +93,19 @@ class Database:
         self.cursor.execute("SELECT id, name FROM DiveSheets WHERE meetID=%s;",[id])
         return self.cursor.fetchall()
 	
-	def createDiveSheet(self, sheet, diverid):
-		self.cursor.execute("INSERT INTO DiveSheets(diverID,name) VALUES(%s,%s) RETURNING id;",[diverid,sheet[0][1]])
+	def createDiveSheet(self, sheet, dives, diverid):
+		self.cursor.execute("INSERT INTO DiveSheets(diverID,name) VALUES(%s,%s) RETURNING id;",[diverid,sheet[1]])
 		id = self.cursor.fetchall()
-		for x in range(1,10): #sheet[0][3]
-			self.cursor.execute("INSERT INTO Scores(sheetID,diveID) VALUES(%s,%s);",[id,sheet[0][3][x][2]])
+		for dive in dives:
+			self.cursor.execute("INSERT INTO Scores(sheetID,diveID) VALUES(%s,%s);",[id,dive])
 		self.conn.commit()
         return id
-		
-	def editDiveSheeet(self, sheet, diverid):
-		self.cursor.execute("INSERT INTO DiveSheets(diverID,name) VALUES(%s,%s) RETURNING id;",[diverid,sheet[0][1]])
-		id = self.cursor.fetchall()
-		for x in range(1,10): #sheet[0][3]
-			self.cursor.execute("INSERT INTO Scores(sheetID,diveID) VALUES(%s,%s);",[id,sheet[0][3][x][2]])
-		self.conn.commit()
-        return id
+
+    def editDiveSheet(self, sheet, dives, diverid):
+        self.cursor.execute("UPDATE DiveSheets SET name=%s WHERE id=%s;",[sheet[1], sheet[0]])
+        for dive in dives:
+            self.cursor.execute("UPDATE Scores SET diveID=%s WHERE sheetID =%s",[dive,sheet[0]])
+        self.conn.commit()
 
     def editMeetOfDiveSheet(self, id, meet):
         self.cursor.execute("UPDATE DiveSheets SET meetID=%s WHERE id=%s;",[meet,id])
@@ -138,6 +136,14 @@ class Database:
 
     def getDives(self):
         self.cursor.execute("SELECT * FROM Dives;")
+        return self.cursor.fetchall()
+
+    def getDivesInSheet(self, sheetid):
+        self.cursor.execute("SELECT number, height, name, position, dd, finalScore FROM Dives JOIN Scores ON diveID=id WHERE sheetID=%s;", sheetid)
+        return self.cursor.fetchall()
+
+    def getIdsInSheet(self, sheetid):
+        self.cursor.execute("SELECT id FROM Scores WHERE sheetID=%s;", sheetid)
         return self.cursor.fetchall()
 
     def getDoableDives(self, diverid):

@@ -81,40 +81,34 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="container">
       <form>
-        <h1>{{sheet[0][1]|striptags}}</h1>
+        <h1>{{sheet[1]|striptags}}</h1>
         <ul class="list-group">
-          <li class="list-group-item">Meet: {{sheet[0][2]|striptags}}</li>
+          <li class="list-group-item">Meet: {{sheet[2]|striptags}}</li>
         </ul>
       </form>
       <table class="table table-condensed table-bordered">
         <thead>
           <tr>
             <th>Dive Order</th>
-            <th>Dive No. &amp; Pos. Ltr. (A,B,C,D)</th>
-            <th>Level 5/7.5/10</th>
-            <th>Written Description</th>
-            <th>Position (S,P,T,F)</th>
+            <th>Dive Number</th>
+            <th>Level</th>
+            <th>Name</th>
+            <th>Position</th>
             <th>D.D.</th>
-            <th>Judge 1</th>
-            <th>Judge 2</th>
-            <th>Judge 3</th>
-            <th>Judge 4</th>
-            <th>Judge 5</th>
-            <th>Judge 6</th>
-            <th>Judge 7</th>
-            <th>Judge 8</th>
-            <th>Judge 9</th>
-            <th>Judges Total</th>
-            <th>Cumulative Total Award</th>
+            <th>Score</th>
           </tr>
         </thead>
         <tbody>
-            {% for i in range(1,11) %}<tr>
-			  <td>{{i}}</td>{% for j in range(0,15) %}<td>{{sheet[0][3][1][j]|striptags}}</td>{% endfor %}</tr>{% endfor %}
-          </tbody>
+          {% for dive in dives %}
+            <tr>
+			       <td>{{loop.index}}</td>
+             {% for j in dive %}<td>{{j|striptags}}</td>{% endfor %}
+             </tr>
+          {% endfor %}
+        </tbody>
       </table>
       <ul class="list-group"></ul>
-      {% if not sheet[0][2] %}<a class="btn btn-primary" href="/divesheets/1/edit">Edit</a> {% endif %}<a class="btn btn-primary" href="/divesheets/">Back</a>
+      {% if not sheet[2] %}<a class="btn btn-primary" href="/divesheets/1/edit">Edit</a> {% endif %}<a class="btn btn-primary" href="/divesheets/">Back</a>
       <div class="row"></div>
       <hr>
       <footer>
