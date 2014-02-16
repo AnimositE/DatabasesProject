@@ -17,9 +17,9 @@ def sheet(id):
 		return redirect(url_for('index'))
 	sheet = [[1,'My Super Awesome Dive Sheet',''],]
 	sheet = db.getDiveSheet(id)
+	sheet = sheet[0]
 	dives = [['A204', '1', 'Forward Dive', 'Tuck', '1.4', '10'],['A204', '1', 'Hurricane Dive', 'Tuck', '1.4', '10']]
 	dives=db.getDivesInSheet(id)
-	sheet = sheet[0]
 	return render_template('divesheet.html', sheet=sheet, dives=dives)
 
 @app.route('/meets/<int:id>/sheet/<int:sheetid>')
