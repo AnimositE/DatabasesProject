@@ -60,3 +60,9 @@ CREATE TABLE Scores (
 	diveID INT REFERENCES Dives(id) ON DELETE CASCADE,
 	score NUMERIC(12,6) NULL
 );
+
+CREATE VIEW DoableDives AS (SELECT id, name, position, height, diverID FROM Dives JOIN Doable ON Dives.id=Doable.diveID);
+
+
+
+
