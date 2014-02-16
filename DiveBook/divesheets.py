@@ -37,6 +37,7 @@ def createDiveSheet():
 	# Create default sheet to be created
 	sheet = [1,'My Super Awesome Dive Sheet','']
 	DoableDives = [[1,'Forward Dive','Tuck',1],[2, 'Backward Dive','Tuck',3],[3,'Reverse Hurricane','Tuck',1]]
+	DoableDives = db.getDoableDives(session['id'])
 	dives = []
 	if request.method == 'POST':
 		if request.form['title']:
