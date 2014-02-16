@@ -94,10 +94,10 @@ class Database:
         return self.cursor.fetchall()
 
     def createDiveSheet(self, sheet, dives, diverid):
-        self.cursor.execute("INSERT INTO DiveSheets(diverID,name) VALUES(%s,%s) RETURNING id;",[diverid,sheet[1]])
-        id = self.cursor.fetchall()
+        self.cursor.execute("INSERT INTO DiveSheets (diverID,name) VALUES (%s,%s) RETURNING id;",[diverid,sheet[1]])
+        id = self.cursor.fetchall()[0]
         for dive in dives:
-            self.cursor.execute("INSERT INTO Scores(sheetID,diveID) VALUES(%s,%s);",[id,dive])
+            self.cursor.execute("INSERT INTO Scores (sheetID,diveID) VALUES (%s,%s);",[id,dive])
         self.conn.commit()
         return id
 
