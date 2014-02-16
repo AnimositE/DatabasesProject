@@ -53,7 +53,7 @@ def createDiveSheet():
 			id = 1
 			# Commit the sheet to the database, get the id back as id
 			id = db.createDiveSheet(sheet, dives, session['id'])
-			return redirect(url_for('sheet', id=id))
+			return redirect(url_for('sheet', id=id[0]))
 	return render_template('createdivesheet.html',message=message, sheet=sheet, dives=DoableDives)
 	
 @app.route('/divesheets/<int:id>/edit',methods=['GET','POST'])
