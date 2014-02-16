@@ -78,23 +78,23 @@ class Database:
     # DIVESHEETS --------------------------------------------------------------------
 
     def getDiveSheets(self, diverid):
-        self.cursor.execute("SELECT Divesheets.id, name, Meets.title, finalScore FROM DiveSheets LEFT JOIN Meets ON meetID = Meets.id WHERE diverID=%s;",[diverid])
+        self.cursor.execute("SELECT Divesheets.id, name, Meets.title, finalScore FROM DiveSheets LEFT JOIN Meets ON meetID=Meets.id WHERE diverID=%s;",[diverid])
         return self.cursor.fetchall()
 
     def getDiveSheet(self, id):
-        self.cursor.execute("SELECT DiveSheets.id, name, title, finalScore FROM DiveSheets JOIN Meets ON Meets.id=meetID WHERE id=%s;",[id])
+        self.cursor.execute("SELECT DiveSheets.id, name, title, finalScore FROM DiveSheets JOIN Meets ON Meets.id=meetID WHERE Divesheets.id=%s;",[id])
         return self.cursor.fetchall()
 
     def getNonRegisteredDiveSheets(self, diverid):
-        self.cursor.execute("SELECT id, name FROM DiveSheets WHERE diverID=%s AND meetID IS NULL;",[diverid])
+        self.cursor.execute("SELECT DiveSheets.id, name FROM DiveSheets WHERE diverID=%s AND meetID IS NULL;",[diverid])
         return self.cursor.fetchall()
 
     def getSheetsForMeet(self, id):
-        self.cursor.execute("SELECT id, name FROM DiveSheets WHERE meetID=%s;",[id])
+        self.cursor.execute("SELECT DiveSheets.id, name FROM DiveSheets WHERE meetID=%s;",[id])
         return self.cursor.fetchall()
 
     def createDiveSheet(self, title, dives, diverid):
-        self.cursor.execute("INSERT INTO DiveSheets (diverID,name) VALUES (%s,%s) RETURNING id;",[diverid,title])
+        self.cursor.execute("INSERT INTO DiveSheets (diverID,name) VALUES (%s,%s) RETURNING Divesheets.id;",[diverid,title])
         id = self.cursor.fetchall()[0]
         for dive in dives:
             self.cursor.execute("INSERT INTO Scores (sheetID,diveID) VALUES (%s,%s);",[id,dive])
@@ -102,13 +102,13 @@ class Database:
         return id
 
     def editDiveSheet(self, sheet, dives, diverid):
-        self.cursor.execute("UPDATE DiveSheets SET name=%s WHERE id=%s;",[sheet[1], sheet[0]])
+        self.cursor.execute("UPDATE DiveSheets SET name=%s WHERE Divesheets.id=%s;",[sheet[1], sheet[0]])
         for dive in dives:
             self.cursor.execute("UPDATE Scores SET diveID=%s WHERE sheetID =%s;",[dive,sheet[0]])
         self.conn.commit()
 
     def editMeetOfDiveSheet(self, id, meet):
-        self.cursor.execute("UPDATE DiveSheets SET meetID=%s WHERE id=%s;",[meet,id])
+        self.cursor.execute("UPDATE DiveSheets SET meetID=%s WHERE Divesheets.id=%s;",[meet,id])
         self.conn.commit()
         return self.cursor.fetchall()
 
