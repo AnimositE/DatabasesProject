@@ -143,7 +143,7 @@ class Database:
         return self.cursor.fetchall()
 
     def getIdsInSheet(self, sheetid):
-        self.cursor.execute("SELECT id FROM Scores WHERE sheetID=%s;", [sheetid])
+        self.cursor.execute("SELECT diveID FROM Scores WHERE sheetID=%s;", [sheetid])
         return self.cursor.fetchall()
 
     def getDoableDives(self, diverid):
