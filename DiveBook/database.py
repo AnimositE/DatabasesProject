@@ -125,6 +125,17 @@ class Database:
     		return dd[0]
     	return ['NOT FOUND', '000']
 
+    def getDoableDive(self, name, height, position):
+        self.cursor.execute("SELECT dd, number, id FROM Dives WHERE name=%s AND height=%s AND position=%s;",[name, height, position])
+        dd = self.cursor.fetchall()
+        if len(dd) > 0:
+            return dd[0]
+        return ['NOT FOUND', '000', '']
+
+    def addDoable(self, diver, id):
+        self.cursor.execute("INSERT INTO Doable (diverID, diveID) VALUES (%s, %s);",[diver,id])
+        self.cursor.commit()
+
     def getDives(self):
         self.cursor.execute("SELECT * FROM Dives;")
         return self.cursor.fetchall()
