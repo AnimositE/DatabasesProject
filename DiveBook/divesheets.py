@@ -62,16 +62,17 @@ def editDiveSheet(id):
 		return redirect(url_for('index'))
 	sheet = [[1,'My Super Awesome Dive Sheet',''],]
 	sheet = db.getDiveSheet(id)
-	doableDives = [[1,'Forward Dive','Tuck',1],[2, 'Backward Dive','Tuck',3],[3,'Reverse Hurricane','Tuck',1]]
-	doableDives = db.getDoableDives(session['id'])
-	dives = [3,1,1,1,1,1,1,1,1,1,1]
-	dives=db.getIdsInSheet(id)
 	sheet = sheet[0]
+	doableDives = [['1','Forward Dive','A',1],['2', 'Backward Dive','B',1]]
+	doableDives = db.getDoableDives(session['id'])
+	for dive in doableDives:
+		dive[0] = int(dive[0])
+	dives = [2,1,2,1,1,1,1,1,1,1,1]
+	dives=db.getIdsInSheet(id)
 	message = ""
 	if request.method == 'POST':
 		if request.form['title']:
-			sheet[2] = request.form['title']
-			# SQL to change the divesheet title
+			sheet[1] = request.form['title']
 		else:
 			message = "Title cannot be empty"
 		for i in range(0,10):
@@ -81,6 +82,6 @@ def editDiveSheet(id):
 				message = "Dive number " + str(i) + " cannot be empty!"
 		if not message:
 			# Commit the sheet to the database, get the id back as id
-			#db.editDiveSheet(sheet, dives, session['id'])
+			db.editDiveSheet(sheet, dives, session['id'])
 			return redirect(url_for('sheet', id=id))
 	return render_template('editdivesheet.html',message=message, sheet=sheet,dives=dives,doableDives=doableDives)
