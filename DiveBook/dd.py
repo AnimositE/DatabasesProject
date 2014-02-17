@@ -5,7 +5,7 @@ from DiveBook import db
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return 'Error Code 418', 418
+    return '<img src="http%3A%2F%2Fimages.sodahead.com%2Fpolls%2F000635829%2Fpolls_teapot_1856_35455_poll_xlarge.jpeg">', 418
 
 @app.route('/dd/')
 def ddLookup():
