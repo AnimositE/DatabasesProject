@@ -19,7 +19,7 @@ def sheet(id):
 	sheet = db.getDiveSheet(id)
 	sheet = sheet[0]
 	dives = [['A204', '1', 'Forward Dive', 'Tuck', '1.4', '10'],['A204', '1', 'Hurricane Dive', 'Tuck', '1.4', '10']]
-	dives=db.getDivesInSheet(id)
+	dives = db.getDivesInSheet(id)
 	return render_template('divesheet.html', sheet=sheet, dives=dives)
 
 @app.route('/meets/<int:id>/sheet/<int:sheetid>')
@@ -63,10 +63,13 @@ def editDiveSheet(id):
 	sheet = [[1,'My Super Awesome Dive Sheet',''],]
 	sheet = db.getDiveSheet(id)
 	sheet = sheet[0]
-	doableDives = [['1','Forward Dive','A',1],['2', 'Backward Dive','B',1]]
+	doableDives = (('1','Forward Dive','A',1),('2', 'Backward Dive','B',1),)
 	doableDives = db.getDoableDives(session['id'])
-	for x in range(0,10):
+	doableDives = list(doableDives)
+	for x in range(0,len(doableDives)):
+		doableDives[x] = list(doableDives[x])
 		doableDives[x][0] = int(doableDives[x][0])
+	print doableDives
 	dives = [2,1,2,1,1,1,1,1,1,1,1]
 	dives=db.getIdsInSheet(id)
 	message = ""
