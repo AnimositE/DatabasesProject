@@ -102,7 +102,7 @@
              <td>{{i}}</td>
              <td><select class="form-control" name="dive{{i-1}}">
               {% for doable in doableDives %}
-               <option value="{{doable[0]|striptags}}" {% if doable[0]==dives[i-1] %} selected{% endif %}>{{doable[1]|striptags}} Position:{{doable[2]|striptags}} Height:{{doable[3]|striptags}}</option>
+               <option value="{{doable[0]|striptags}}" {% if doable[0]==dives[i-1][0] %} selected{% endif %}>{{doable[1]|striptags}} Position:{{doable[2]|striptags}} Height:{{doable[3]|striptags}}</option>
               {% endfor %}
              </select></td>
             </tr>
