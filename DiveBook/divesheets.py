@@ -63,15 +63,6 @@ def editDiveSheet(id):
 	sheet = [[1,'My Super Awesome Dive Sheet',''],]
 	sheet = db.getDiveSheet(id)
 	sheet = sheet[0]
-	"""doableDives = (('1','Forward Dive','A',1),('2', 'Backward Dive','B',1),)
-	doableDives = db.getDoableDives(session['id'])
-	doableDives = list(doableDives)
-	for x in range(0,len(doableDives)):
-		doableDives[x] = list(doableDives[x])
-		doableDives[x][0] = int(doableDives[x][0])
-	print doableDives
-	dives = [2,1,2,1,1,1,1,1,1,1,1]
-	dives=db.getIdsInSheet(id)"""
 	doableDives = [[1,'Forward Flop','A',1],]
 	doableDives = db.getDoableDives(session['id'])
 	dives = [[2],[1],[2],[1],[1],[1],[1],[1],[1],[1]]
