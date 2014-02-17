@@ -34,6 +34,6 @@ def viewprofile():
     diverid = session['id']
     profile = ['Thelonius','Coco Diver', 'coco@ilovediving.com', '2', 'Rose-Hulman', 'I', 'Back Tuck']
     doabledives = ['Forward Dive', 'Back Tuck', 'Front 1 1/2']
-    profile = db.getDiverProfile(id)
-    doabledives = db.getDoableDives(id)
+    profile = db.getDiverProfile(diverid)
+    doabledives = db.getDoableDives(diverid)
     return render_template('profile.html',profile=profile, doabledives=doabledives)
