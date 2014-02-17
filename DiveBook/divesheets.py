@@ -65,8 +65,7 @@ def editDiveSheet(id):
 	sheet = sheet[0]
 	doableDives = [['1','Forward Dive','A',1],['2', 'Backward Dive','B',1]]
 	doableDives = db.getDoableDives(session['id'])
-	for dive in doableDives:
-		dive[0] = int(dive[0])
+	doableDives = [int(dive[0]) for dive in doableDives]
 	dives = [2,1,2,1,1,1,1,1,1,1,1]
 	dives=db.getIdsInSheet(id)
 	message = ""
