@@ -3,6 +3,10 @@ from flask import Flask, render_template, send_from_directory, request, session,
 from DiveBook import app
 from DiveBook import db
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('Error Code 418'), 418
+
 @app.route('/dd/')
 def ddLookup():
     return render_template('ddlookup.html')
