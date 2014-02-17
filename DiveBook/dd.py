@@ -5,7 +5,7 @@ from DiveBook import db
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('Error Code 418'), 418
+    return 'Error Code 418', 418
 
 @app.route('/dd/')
 def ddLookup():
