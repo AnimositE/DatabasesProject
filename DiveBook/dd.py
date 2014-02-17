@@ -39,7 +39,7 @@ def doables():
         if twist != '0':
             name += ' ' + twist
         diveInfo = [1.4,'101',1]
-        diveInfo = db.getDD(name,height,position)
+        diveInfo = db.getDoableDive(name,height,position)
         return render_template('doable.html',name=name,height=height,dd=diveInfo[0],number=diveInfo[1],position=position,id=diveInfo[2])
     return render_template('doable.html')
 
