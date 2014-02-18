@@ -22,11 +22,11 @@ def sheet(id):
 	dives = db.getDivesInSheet(id)
 	return render_template('divesheet.html', sheet=sheet, dives=dives)
 
-@app.route('/meets/<int:id>/sheet/<int:sheetid>')
-def registerMeet(id, sheetid):
+@app.route('/meets/<int:meetid>/sheet/<int:sheetid>')
+def registerMeet(meetid, sheetid):
 	if 'id' not in session:
 		return redirect(url_for('index'))
-	db.editMeetOfDiveSheet(id, sheetid)
+	db.editMeetOfDiveSheet(meetid, sheetid)
 	return redirect(url_for('sheet', id=sheetid))
 
 @app.route('/divesheets/create',methods=['GET','POST'])
