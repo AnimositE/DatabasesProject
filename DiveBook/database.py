@@ -32,6 +32,10 @@ class Database:
         self.cursor.execute("SELECT name FROM Doable JOIN Dives ON diveID = id WHERE diverID = %s;",[diverid])
         return self.cursor.fetchall()
 
+    def getMeetsOfDiver(self,diverid):
+        self.cursor.execute("SELECT Meets.title FROM Meets, DiveSheets WHERE Meets.id = DiveSheets.meetid AND DiveSheets.diverid = $s;" [diverid])
+        return self.cursor.fetchall()
+        
     def searchDivers(self, fname, lname, school):
         query = "SELECT diverID, fName, lName, name FROM Profiles, Schools WHERE Profiles.schoolID=Schools.id"
         params = []
