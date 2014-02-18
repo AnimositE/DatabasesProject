@@ -18,7 +18,7 @@ def sheet(id):
 	sheet = [[1,'My Super Awesome Dive Sheet',''],]
 	sheet = db.getDiveSheet(id)
 	sheet = sheet[0]
-	dives = [['A204', '1', 'Forward Dive', 'Tuck', '1.4', '10'],['A204', '1', 'Hurricane Dive', 'Tuck', '1.4', '10']]
+	dives = [[1, 'A204', '1', 'Forward Dive', 'Tuck', '1.4', '10'],[2, 'A204', '1', 'Hurricane Dive', 'Tuck', '1.4', '10']]
 	dives = db.getDivesInSheet(id)
 	return render_template('divesheet.html', sheet=sheet, dives=dives)
 
