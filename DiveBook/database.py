@@ -147,7 +147,7 @@ class Database:
         return self.cursor.fetchall()
 
     def getDivesInSheet(self, sheetid):
-        self.cursor.execute("SELECT row, number, height, Dives.name, position, dd, finalScore FROM Dives JOIN Scores ON diveID=id JOIN DiveSheets ON sheetID = DiveSheets.id WHERE sheetID=%s ORDER BY row ASC;", [sheetid])
+        self.cursor.execute("SELECT row, number, height, Dives.name, position, dd, score FROM Dives JOIN Scores ON diveID=id JOIN DiveSheets ON sheetID = DiveSheets.id WHERE sheetID=%s ORDER BY row ASC;", [sheetid])
         return self.cursor.fetchall()
 
     def getIdsInSheet(self, sheetid):
