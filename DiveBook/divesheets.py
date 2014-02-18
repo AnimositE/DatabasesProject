@@ -27,7 +27,7 @@ def registerMeet(id, sheetid):
 	if 'id' not in session:
 		return redirect(url_for('index'))
 	db.editMeetOfDiveSheet(id, sheetid)
-	return redirect(url_for('sheet', id=id))
+	return redirect(url_for('sheet', id=sheetid))
 
 @app.route('/divesheets/create',methods=['GET','POST'])
 def createDiveSheet():
