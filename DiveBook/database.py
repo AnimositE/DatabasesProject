@@ -104,7 +104,7 @@ class Database:
     def editDiveSheet(self, sheet, dives, diverid):
         self.cursor.execute("UPDATE DiveSheets SET name=%s WHERE Divesheets.id=%s;",[sheet[1], sheet[0]])
         for dive in dives:
-            self.cursor.execute("UPDATE Scores SET diveID=%s, WHERE sheetID =%s AND row = %s;",[dive[1],sheet[0],dive[0]])
+            self.cursor.execute("UPDATE Scores SET diveID=%s WHERE sheetID =%s AND row = %s;",[dive[1],sheet[0],dive[0]])
         self.conn.commit()
 
     def editMeetOfDiveSheet(self, id, meet):
@@ -139,7 +139,7 @@ class Database:
         return self.cursor.fetchall()
 
     def getDivesInSheet(self, sheetid):
-        self.cursor.execute("SELECT number, height, Dives.name, position, dd, finalScore FROM Dives JOIN Scores ON diveID=id JOIN DiveSheets ON sheetID = DiveSheets.id WHERE sheetID=%s;", [sheetid])
+        self.cursor.execute("SELECT row, number, height, Dives.name, position, dd, finalScore,row FROM Dives JOIN Scores ON diveID=id JOIN DiveSheets ON sheetID = DiveSheets.id WHERE sheetID=%s ORDER BY row ASC;", [sheetid])
         return self.cursor.fetchall()
 
     def getIdsInSheet(self, sheetid):

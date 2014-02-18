@@ -101,7 +101,6 @@
         <tbody>
           {% for dive in dives %}
             <tr>
-			       <td>{{loop.index}}</td>
              {% for j in dive %}<td>{{j|striptags}}</td>{% endfor %}
              </tr>
           {% endfor %}
