@@ -43,7 +43,7 @@ def viewprofile():
     meets = db.getMeetsOfDiver(diverid)
     return render_template('profile.html',profile=profile, doabledives=doabledives, meets=meets)
 
-@app.route('/editprofile/')
+@app.route('/manageprofile/',methods=['GET','POST'])
 def editprofile():
     if 'id' not in session:
         return redirt(url_for('index'))
