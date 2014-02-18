@@ -32,7 +32,6 @@ INSERT INTO Dives (name, number, height, diveGroup, position, dd) VALUES ('Forwa
 INSERT INTO Dives (name, number, height, diveGroup, position, dd) VALUES ('Forward 2 1/2 Somersaults','105',3,'Forward','B',2.4);
 INSERT INTO Dives (name, number, height, diveGroup, position, dd) VALUES ('Forward 2 1/2 Somersaults','105',3,'Forward','C',2.2);
 
--- All of these are entered
 --Back Group
 INSERT INTO Dives (name, number, height, diveGroup, position, dd) VALUES ('Back Dive','201',1,'Back','A',1.7);
 INSERT INTO Dives (name, number, height, diveGroup, position, dd) VALUES ('Back Dive','201',1,'Back','B',1.6);
@@ -134,3 +133,5 @@ INSERT INTO Dives (name, number, height, diveGroup, position, dd) VALUES ('Inwar
 INSERT INTO Dives (name, number, height, diveGroup, position, dd) VALUES ('Inward 2 1/2 Somersaults','405',3,'Inward','C',2.7);
 --Reverse Group
 
+
+-- All of these are entered
