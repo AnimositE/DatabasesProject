@@ -1,0 +1,152 @@
+<!doctype html>
+
+<html>
+  
+  <head>
+    <title>DiveBook</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <style type="text/css">
+      body {
+        padding-top: 50px;
+        padding-bottom: 20px;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/index/">DiveBook</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="/index/">Home&nbsp;<i class="fa fa-home"></i></a>
+            </li>
+            <li>
+              <a href="/dd/">DD Lookup&nbsp;<i class="fa fa-list-alt"></i></a>
+            </li>
+            <li class="active">
+              <a href="/divers/">Divers&nbsp;<i class="fa fa-user"></i></a>
+            </li>
+            <li>
+              <a href="/meets/">Meets&nbsp;<i class="fa fa-calendar"></i></a>
+            </li>
+          </ul>{% if 'id' not in session %}
+          <form method="POST" action="/login/" class="navbar-form navbar-right">
+            <div class="form-group">
+              <input placeholder="Email" name="email" class="form-control" type="text">
+            </div>
+            <div class="form-group">
+              <input placeholder="Password" name="pass" class="form-control" type="password">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+            <a class="btn btn-info" href="/register/">Sign up</a>
+          </form>{% else %}
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="/profile/">View Profile</a>
+                </li>
+                <li>
+                  <a href="/manageprofile/">Manage Profile</a>
+                </li>
+                <li>
+                  <a href="/dives/">Manage Dives</a>
+                </li>
+                <li>
+                  <a href="/divesheets/">Manage Dive Sheets</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="/logout">Log out</a>
+                </li>
+              </ul>
+            </li>
+          </ul>{% endif %}
+        </div>
+        <!--/.navbar-collapse -->
+      </div>
+    </div>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="container">
+      <h1 class="page-header">Manage Profile<br></h1>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <img width="330px" src="http://cdn9.meghantelpner.com/wp-content/uploads/2009/01/40709058coconut.jpg">
+            </div>
+            <div class="panel-footer">
+              <h3> <input type="text" placeholder="First Name"> <input type="text" placeholder="Last Name">&nbsp;</h3>
+            </div>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <i class="fa fa-envelope-o"></i>&nbsp;{{profile[2]|striptags}}</li>
+              <li class="list-group-item">
+                <i class="fa fa-user"></i>&nbsp;Age
+                <input type="text">
+              </li>
+              <li class="list-group-item">
+                <i class="fa fa-home"></i>&nbsp;{{profile[4]|striptags}}</li>
+              <li class="list-group-item">
+                <font face="FontAwesome"><span style="line-height: 14px;"><i class="fa fa-square-o"></i>&nbsp;Division {{profile[5]|striptags}}</span></font>
+              </li>
+            </ul>
+          </div>
+          <ul class="list-group"></ul>
+        </div>
+        <div class="col-md-8">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <i class="fa fa-list-alt"></i>&nbsp;{{profile[0]|striptags}}'s Meets
+            </div>
+            <ul class="list-group">{%for meet in meets%}
+              <li class="list-group-item">{{meet[0]}}</li>{% endfor %}</ul>
+            <div class="panel-footer">&nbsp;
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <i class="fa fa-heart"></i>&nbsp;Dives That {{profile[0]|striptags}} Can Do:
+            </div>
+            <ul class="list-group">{% for dive in doabledives %} {% if dive[0]==profile[6] %}
+              <li class="list-group-item">{{dive[0]}} is my favourite dive</li>{% else %}
+              <li class="list-group-item">{{dive[0]}}</li>{% endif %} {% endfor %}</ul>
+            <div class="panel-footer">&nbsp;
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <i class="fa fa-heart"></i>&nbsp;Set Favourite Dive
+            </div>
+            <div class="panel-footer">
+              <select class="form-control">
+                {% for dive in doabledives %}
+                <option>{{dive[0]}}}</option>
+                {% endfor %}
+              </select>&nbsp;
+            </div>
+          </div>
+          <a class="btn btn-primary">Submit Changes</a>
+        </div>
+      </div>
+      <!-- Example row of columns -->
+      <hr>
+      <footer>
+        <p>&copy; DiveBook 2014</p>
+      </footer>
+    </div>
+    <!-- /container -->
+  </body>
+
