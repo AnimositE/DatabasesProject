@@ -37,6 +37,6 @@ def viewprofile():
     doabledives = [['Forward Dive'], ['Back Tuck'], ['Front 1 1/2']]
     profile = db.getDiverProfile(diverid)
     profile = profile[0]
-    doabledives = db.getDoableDivesName(id)
+    doabledives = db.getDoableDivesName(diverid)
     meets = [['Home Meet'], ['Franklin'], ['Washington']]
     return render_template('profile.html',profile=profile, doabledives=doabledives, meets=meets)
