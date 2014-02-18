@@ -26,7 +26,8 @@ def profile(id):
     #profile = db.getDiverProfile(id)
     profile = profile[0]
     #doabledives = db.getDoableDivesName(id)
-    return render_template('profile.html',profile=profile, doabledives=doabledives)
+    meets = [['Home Meet'], ['Franklin'], ['Washington']]
+    return render_template('profile.html',profile=profile, doabledives=doabledives, meets=meets)
 
 @app.route('/profile/')
 def viewprofile():
@@ -38,4 +39,5 @@ def viewprofile():
     #profile = db.getDiverProfile(diverid)
     profile = profile[0]
     #doabledives = db.getDoableDivesName(id)
-    return render_template('profile.html',profile=profile, doabledives=doabledives)
+    meets = [['Home Meet'], ['Franklin'], ['Washington']]
+    return render_template('profile.html',profile=profile, doabledives=doabledives, meets=meets)

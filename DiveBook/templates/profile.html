@@ -110,9 +110,9 @@
               <i class="fa fa-list-alt"></i>&nbsp;{{profile[0]|striptags}}'s Meets
             </div>
             <ul class="list-group">
-              <li class="list-group-item">First Item</li>
-              <li class="list-group-item">Second Item</li>
-              <li class="list-group-item">Third Item</li>
+              {%for meet in meets%}
+              <li class="list-group-item">{{meet[0]}}</li>
+              {% endfor %}
             </ul>
             <div class="panel-footer">&nbsp;
             </div>
