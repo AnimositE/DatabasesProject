@@ -32,10 +32,6 @@ class Database:
         self.cursor.execute("SELECT name FROM Doable JOIN Dives ON diveID = id WHERE diverID = %s;",[diverid])
         return self.cursor.fetchall()
 
-    def getMeetsOfDiver(self,diverid):
-    self.cursor.execute("SELECT Meets.title FROM Meets, DiveSheets WHERE Meets.id = DiveSheets.meetid AND DiveSheets.diverid = $s;" [diverid])
-    return self.cursor.fetchall()
-    
     def searchDivers(self, fname, lname, school):
         query = "SELECT diverID, fName, lName, name FROM Profiles, Schools WHERE Profiles.schoolID=Schools.id"
         params = []
@@ -75,7 +71,12 @@ class Database:
 
     def schoolInfo(self, schoolid):
         self.cursor.execute("SELECT name, division FROM Schools WHERE id=%s;",[schoolid])
-        return self.cursor.fetchall()[0]
+        
+
+    def scoreDives(self, sheetid, row, score):
+        self.cursor.execute("UPDATE Scores SET score=%s  WHERE sheetID=%s AND row=%s;",[score,sheetid,row])
+        self.conn.commit()
+
 
     # --------------------------------------------------------------------------------
 
@@ -101,20 +102,23 @@ class Database:
         self.cursor.execute("INSERT INTO DiveSheets (diverID,name) VALUES (%s,%s) RETURNING Divesheets.id;",[diverid,title])
         id = self.cursor.fetchall()[0]
         for dive in dives:
-            self.cursor.execute("INSERT INTO Scores (sheetID,diveID) VALUES (%s,%s);",[id,dive])
+            self.cursor.execute("INSERT INTO Scores (sheetID,diveID,row) VALUES (%s,%s,%s);",[id,dive[1],dive[0]])
         self.conn.commit()
         return id
 
-    def editDiveSheet(self, sheet, dives, diverid):
-        self.cursor.execute("UPDATE DiveSheets SET name=%s WHERE Divesheets.id=%s;",[sheet[1], sheet[0]])
+    def editDiveSheet(self, sheetid, title, dives, diverid):
+        self.cursor.execute("UPDATE DiveSheets SET name=%s WHERE Divesheets.id=%s;",[title, sheetid])
         for dive in dives:
-            self.cursor.execute("UPDATE Scores SET diveID=%s WHERE sheetID =%s;",[dive[0],sheet[0]])
+            self.cursor.execute("UPDATE Scores SET diveID=%s WHERE sheetID =%s AND row = %s;",[dive[1],sheetid,dive[0]])
         self.conn.commit()
 
-    def editMeetOfDiveSheet(self, id, meet):
-        self.cursor.execute("UPDATE DiveSheets SET meetID=%s WHERE Divesheets.id=%s;",[meet,id])
+    def editMeetOfDiveSheet(self, meetid, sheetid):
+        self.cursor.execute("UPDATE DiveSheets SET meetID=%s WHERE Divesheets.id=%s;",[meetid,sheetid])
         self.conn.commit()
-        return self.cursor.fetchall()
+
+    def deleteDiveSheet(self, sheetid, diverid):
+        self.cursor.execute("DELETE FROM DiveSheets WHERE Divesheets.id=%s AND Divesheets.diverID=%s;",[sheetid,diverid])
+        self.conn.commit()
 
     # -------------------------------------------------------------------------------
 
@@ -143,7 +147,7 @@ class Database:
         return self.cursor.fetchall()
 
     def getDivesInSheet(self, sheetid):
-        self.cursor.execute("SELECT number, height, Dives.name, position, dd, finalScore FROM Dives JOIN Scores ON diveID=id JOIN DiveSheets ON sheetID = DiveSheets.id WHERE sheetID=%s;", [sheetid])
+        self.cursor.execute("SELECT row, number, height, Dives.name, position, dd, finalScore FROM Dives JOIN Scores ON diveID=id JOIN DiveSheets ON sheetID = DiveSheets.id WHERE sheetID=%s ORDER BY row ASC;", [sheetid])
         return self.cursor.fetchall()
 
     def getIdsInSheet(self, sheetid):
