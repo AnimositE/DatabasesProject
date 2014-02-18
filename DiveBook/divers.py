@@ -42,3 +42,19 @@ def viewprofile():
     meets = [['Home Meet'], ['Franklin'], ['Washington']]
     meets = db.getMeetsOfDiver(diverid)
     return render_template('profile.html',profile=profile, doabledives=doabledives, meets=meets)
+
+@app.route('/editprofile/')
+def editprofile():
+    if 'id' not in session:
+        return redirt(url_for('index'))
+    diverid = session['id']
+    profile = [['Thelonius','Coco Diver', 'coco@ilovediving.com', '2', 'Rose-Hulman', 'I', 'Back Tuck'],]
+    doabledives = [['Forward Dive'], ['Back Tuck'], ['Front 1 1/2']]
+    #profile = db.getDiverProfile(diverid)
+    profile = profile[0]
+    #doabledives = db.getDoableDivesName(diverid)
+    meets = [['Home Meet'], ['Franklin'], ['Washington']]
+    #meets = db.getMeetsOfDiver(diverid)
+    return render_template('profile.html',profile=profile, doabledives=doabledives, meets=meets)
+
+
