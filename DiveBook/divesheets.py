@@ -8,7 +8,7 @@ def divesheets():
 	if 'id' not in session:
 		return redirect(url_for('index'))
 	sheets = [[1,'My Super Awesome Dive Sheet','Rose-Hulman Dive Meet','10.0'],[2,'My Other Dive Sheet','Rose-Hulman Dive Meet','10.0']]
-	#sheets = db.getDiveSheets(session['id'])
+	sheets = db.getDiveSheets(session['id'])
 	return render_template('divesheets.html',sheets=sheets)
 
 @app.route('/divesheets/<int:id>')
@@ -19,14 +19,14 @@ def sheet(id):
 	sheet = db.getDiveSheet(id)
 	sheet = sheet[0]
 	dives = [['A204', '1', 'Forward Dive', 'Tuck', '1.4', '10'],['A204', '1', 'Hurricane Dive', 'Tuck', '1.4', '10']]
-	#dives = db.getDivesInSheet(id)
+	dives = db.getDivesInSheet(id)
 	return render_template('divesheet.html', sheet=sheet, dives=dives)
 
 @app.route('/meets/<int:id>/sheet/<int:sheetid>')
 def registerMeet(id, sheetid):
 	if 'id' not in session:
 		return redirect(url_for('index'))
-	#db.editMeetOfDiveSheets(id, sheetid)
+	db.editMeetOfDiveSheet(id, sheetid)
 	return redirect(url_for('sheet', id=id))
 
 @app.route('/divesheets/create',methods=['GET','POST'])
@@ -37,7 +37,7 @@ def createDiveSheet():
 	# Create default sheet to be created
 	title = None
 	doableDives = [[1,'Forward Dive','Tuck',1],[2, 'Backward Dive','Tuck',3],[3,'Reverse Hurricane','Tuck',1]]
-	#doableDives = db.getDoableDives(session['id'])
+	doableDives = db.getDoableDives(session['id'])
 	dives = []
 	if request.method == 'POST':
 		if request.form['title']:
@@ -46,13 +46,13 @@ def createDiveSheet():
 			message = "Title cannot be empty"
 		for i in range(1,11):
 			if request.form['dive'+str(i)]:
-				dives.append(request.form['dive'+str(i)]) # This is an ID
+				dives.append([i, request.form['dive'+str(i)]]) # [row, dive id]
 			else:
 				message = "Dive number " + str(i) + " cannot be empty!"
 		if not message:
 			id = [1]
 			# Commit the sheet to the database, get the id back as id
-			#id = db.createDiveSheet(title, dives, session['id'])
+			id = db.createDiveSheet(title, dives, session['id'])
 			return redirect(url_for('sheet', id=id[0]))
 	return render_template('createdivesheet.html',message=message, title=title, dives=dives, doableDives=doableDives)
 	
@@ -63,23 +63,27 @@ def editDiveSheet(id):
 	sheet = [[1,'My Super Awesome Dive Sheet',''],]
 	sheet = db.getDiveSheet(id)
 	sheet = sheet[0]
+	title = sheet[1]
 	doableDives = [[1,'Forward Flop','A',1],]
-	#doableDives = db.getDoableDives(session['id'])
-	dives = [[2],[1],[2],[1],[1],[1],[1],[1],[1],[1]]
-	#dives=db.getIdsInSheet(id)
+	doableDives = db.getDoableDives(session['id'])
+	dives = ([2],[1],[2],[1],[1],[1],[1],[1],[1],[1])
+	dives=db.getIdsInSheet(id)
+	dives = list(dives)
 	message = ""
 	if request.method == 'POST':
+		dives = []
+		title = None
 		if request.form['title']:
-			sheet[1] = request.form['title']
+			title = request.form['title']
 		else:
 			message = "Title cannot be empty"
-		for i in range(0,10):
+		for i in range(1,11):
 			if request.form['dive'+str(i)]:
-				dives[i][0] = int(request.form['dive'+str(i)]) # This is an ID
+				dives.append([i, request.form['dive'+str(i)]]) # [row, dive id]
 			else:
 				message = "Dive number " + str(i) + " cannot be empty!"
 		if not message:
 			# Commit the sheet to the database, get the id back as id
-			#db.editDiveSheet(sheet, dives, session['id'])
+			db.editDiveSheet(sheet, dives, session['id'])
 			return redirect(url_for('sheet', id=id))
 	return render_template('editdivesheet.html',message=message, sheet=sheet,dives=dives,doableDives=doableDives)

@@ -97,14 +97,14 @@ class Database:
         self.cursor.execute("INSERT INTO DiveSheets (diverID,name) VALUES (%s,%s) RETURNING Divesheets.id;",[diverid,title])
         id = self.cursor.fetchall()[0]
         for dive in dives:
-            self.cursor.execute("INSERT INTO Scores (sheetID,diveID) VALUES (%s,%s);",[id,dive])
+            self.cursor.execute("INSERT INTO Scores (sheetID,diveID,row) VALUES (%s,%s,%s);",[id,dive[1]],dive[0])
         self.conn.commit()
         return id
 
     def editDiveSheet(self, sheet, dives, diverid):
         self.cursor.execute("UPDATE DiveSheets SET name=%s WHERE Divesheets.id=%s;",[sheet[1], sheet[0]])
         for dive in dives:
-            self.cursor.execute("UPDATE Scores SET diveID=%s WHERE sheetID =%s;",[dive[0],sheet[0]])
+            self.cursor.execute("UPDATE Scores SET diveID=%s, WHERE sheetID =%s AND row = %s;",[dive[1],sheet[0],dive[0]])
         self.conn.commit()
 
     def editMeetOfDiveSheet(self, id, meet):
