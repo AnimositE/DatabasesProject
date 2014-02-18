@@ -111,6 +111,10 @@ class Database:
         self.cursor.execute("UPDATE DiveSheets SET meetID=%s WHERE Divesheets.id=%s;",[meetid,sheetid])
         self.conn.commit()
 
+    def deleteDiveSheet(self, sheetid, diverid):
+        self.cursor.execute("DELETE FROM DiveSheets WHERE Divesheets.id=%s AND Divesheets.diverID=%s;",[sheetid,diverid])
+        self.conn.commit()
+
     # -------------------------------------------------------------------------------
 
     # DIVES ------------------------------------------------------------------------
@@ -138,7 +142,7 @@ class Database:
         return self.cursor.fetchall()
 
     def getDivesInSheet(self, sheetid):
-        self.cursor.execute("SELECT row, number, height, Dives.name, position, dd, finalScore,row FROM Dives JOIN Scores ON diveID=id JOIN DiveSheets ON sheetID = DiveSheets.id WHERE sheetID=%s ORDER BY row ASC;", [sheetid])
+        self.cursor.execute("SELECT row, number, height, Dives.name, position, dd, finalScore FROM Dives JOIN Scores ON diveID=id JOIN DiveSheets ON sheetID = DiveSheets.id WHERE sheetID=%s ORDER BY row ASC;", [sheetid])
         return self.cursor.fetchall()
 
     def getIdsInSheet(self, sheetid):

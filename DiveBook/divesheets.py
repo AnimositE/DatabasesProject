@@ -29,6 +29,13 @@ def registerMeet(meetid, sheetid):
 	db.editMeetOfDiveSheet(meetid, sheetid)
 	return redirect(url_for('sheet', id=sheetid))
 
+@app.route('/divesheets/<int:id>/delete/')
+def deleteSheet(id):
+	if 'id' not in session:
+		return redirect(url_for('index'))
+	db.deleteDiveSheet(id, session['id'])
+	return redirect(url_for('divesheets'))
+
 @app.route('/divesheets/create',methods=['GET','POST'])
 def createDiveSheet():
 	if 'id' not in session:
@@ -87,4 +94,4 @@ def editDiveSheet(id):
 			# Commit the sheet to the database, get the id back as id
 			db.editDiveSheet(sheetid, title, dives, session['id'])
 			return redirect(url_for('sheet', id=id))
-	return render_template('editdivesheet.html',message=message, sheet=sheet,dives=dives,doableDives=doableDives)
+	return render_template('editdivesheet.html',message=message, title=title, sheetid=sheetid,dives=dives,doableDives=doableDives)
