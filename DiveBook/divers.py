@@ -21,9 +21,10 @@ def searchDivers():
 @app.route('/profile/<int:id>')
 def profile(id):
     #TODO: Generate profile page from diver id
-    profile = ['Thelonius','Coco Diver', 'coco@ilovediving.com', '2', 'Rose-Hulman', 'I', 'Back Tuck']
-    doabledives = ['Forward Dive', 'Back Tuck', 'Front 1 1/2']
+    profile = [['Thelonius','Coco Diver', 'coco@ilovediving.com', '2', 'Rose-Hulman', 'I', 'Back Tuck'],]
+    doabledives = [['Forward Dive'], ['Back Tuck'], ['Front 1 1/2']]
     #profile = db.getDiverProfile(id)
+    profile = profile[0]
     #doabledives = db.getDoableDivesName(id)
     return render_template('profile.html',profile=profile, doabledives=doabledives)
 
@@ -32,8 +33,9 @@ def viewprofile():
     if 'id' not in session:
         return redirect(url_for('index'))
     diverid = session['id']
-    profile = ['Thelonius','Coco Diver', 'coco@ilovediving.com', '2', 'Rose-Hulman', 'I', 'Back Tuck']
-    doabledives = ['Forward Dive', 'Back Tuck', 'Front 1 1/2']
+    profile = [['Thelonius','Coco Diver', 'coco@ilovediving.com', '2', 'Rose-Hulman', 'I', 'Back Tuck'],]
+    doabledives = [['Forward Dive'], ['Back Tuck'], ['Front 1 1/2']]
     #profile = db.getDiverProfile(diverid)
-    #doabledives = db.getDoableDives(diverid)
+    profile = profile[0]
+    #doabledives = db.getDoableDivesName(id)
     return render_template('profile.html',profile=profile, doabledives=doabledives)
