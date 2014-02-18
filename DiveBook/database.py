@@ -33,7 +33,7 @@ class Database:
         return self.cursor.fetchall()
 
     def getMeetsOfDiver(self,diverid):
-        self.cursor.execute("SELECT Meets.title FROM Meets, DiveSheets WHERE Meets.id = DiveSheets.meetid AND DiveSheets.diverid = $s;" [diverid])
+        self.cursor.execute("SELECT Meets.title FROM Meets, DiveSheets WHERE Meets.id = DiveSheets.meetid AND DiveSheets.diverid = %s;" [diverid])
         return self.cursor.fetchall()
         
     def searchDivers(self, fname, lname, school):
