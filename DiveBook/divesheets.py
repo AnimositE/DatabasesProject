@@ -105,7 +105,7 @@ def editScoresOfDiveSheet(id):
 	sheet = db.getDiveSheet(id)
 	sheet=sheet[0]
 	dives = [[1, 'A204', '1', 'Forward Dive', 'Tuck', '1.4', '20'],[2, 'A204', '1', 'Hurricane Dive', 'Tuck', '1.4', ''],[1, 'A204', '1', 'Forward Dive', 'Tuck', '1.4', '20'],[2, 'A204', '1', 'Hurricane Dive', 'Tuck', '1.4', ''],[1, 'A204', '1', 'Forward Dive', 'Tuck', '1.4', '20'],[2, 'A204', '1', 'Hurricane Dive', 'Tuck', '1.4', ''],[1, 'A204', '1', 'Forward Dive', 'Tuck', '1.4', '20'],[2, 'A204', '1', 'Hurricane Dive', 'Tuck', '1.4', ''],[1, 'A204', '1', 'Forward Dive', 'Tuck', '1.4', '20'],[2, 'A204', '1', 'Hurricane Dive', 'Tuck', '1.4', ''],]
-	dives = getDivesInSheet(id)
+	dives = db.getDivesInSheet(id)
 	if request.method == 'POST':
 		newdives=[]
 		# Check that every field was entered in
