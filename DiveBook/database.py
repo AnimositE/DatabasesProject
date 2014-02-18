@@ -101,8 +101,8 @@ class Database:
         self.conn.commit()
         return id
 
-    def editDiveSheet(self, sheet, dives, diverid):
-        self.cursor.execute("UPDATE DiveSheets SET name=%s WHERE Divesheets.id=%s;",[sheet[1], sheet[0]])
+    def editDiveSheet(self, sheetid, title, dives, diverid):
+        self.cursor.execute("UPDATE DiveSheets SET name=%s WHERE Divesheets.id=%s;",[title, sheetid])
         for dive in dives:
             self.cursor.execute("UPDATE Scores SET diveID=%s WHERE sheetID =%s AND row = %s;",[dive[1],sheet[0],dive[0]])
         self.conn.commit()
@@ -110,7 +110,6 @@ class Database:
     def editMeetOfDiveSheet(self, id, meet):
         self.cursor.execute("UPDATE DiveSheets SET meetID=%s WHERE Divesheets.id=%s;",[meet,id])
         self.conn.commit()
-        return self.cursor.fetchall()
 
     # -------------------------------------------------------------------------------
 
