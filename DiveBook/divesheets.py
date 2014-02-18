@@ -95,3 +95,27 @@ def editDiveSheet(id):
 			#db.editDiveSheet(sheetid, title, dives, session['id'])
 			return redirect(url_for('sheet', id=id))
 	return render_template('editdivesheet.html',message=message, title=title, sheetid=sheetid,dives=dives,doableDives=doableDives)
+
+@app.route('/schools/scoresheet/<int:id>',methods=['GET','POST'])
+def editScoresOfDiveSheet(id):
+	if 'school' not in session:
+		return redirect(url_for('schools'))
+	message = ''
+	sheet = [[1,'My Super Awesome Dive Sheet',''],]
+	#sheet = db.getDiveSheet(id)
+	dives = [[1, 'A204', '1', 'Forward Dive', 'Tuck', '1.4', ''],[2, 'A204', '1', 'Hurricane Dive', 'Tuck', '1.4', '']]
+	#dives = getDivesInSheet(id)
+	if request.method == 'POST':
+		dives=[]
+		# Check that every field was entered in
+		for i in range(1,11):
+			if request.form['dive'+str(i)]:
+				dives.append(request.form['dive'+str(i)]) # [row, score]
+			else:
+				message = 'Dive ' + str(i) + ' score field cannot be empty!'
+	if not message:
+		# For each dive returned, set the score of that dive equal to the score
+		for i in range(1,11):
+			pass
+			#db.scoreDives(id,i,dives[i-1])
+	return render_template('scores.html', sheet=sheet, dives=dives, message=message)

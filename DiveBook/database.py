@@ -71,7 +71,12 @@ class Database:
 
     def schoolInfo(self, schoolid):
         self.cursor.execute("SELECT name, division FROM Schools WHERE id=%s;",[schoolid])
-        return self.cursor.fetchall()[0]
+        
+
+    def scoreDives(self, sheetid, row, score):
+        self.cursor.execute("UPDATE Scores SET score=%s  WHERE sheetID=%s AND row=%s;",[score,sheetid,row])
+        self.conn.commit()
+
 
     # --------------------------------------------------------------------------------
 
