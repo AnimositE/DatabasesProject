@@ -1,3 +1,4 @@
+INSERT INTO Dives (name, number, height, diveGroup, position, dd) VALUES ('Forward Dive','101',1,'Forward','A',1.4);
 INSERT INTO Dives (name, number, height, diveGroup, position, dd) VALUES ('Forward Dive','101',1,'Forward','B',1.3);
 INSERT INTO Dives (name, number, height, diveGroup, position, dd) VALUES ('Forward Dive','101',1,'Forward','C',1.2);
 INSERT INTO Dives (name, number, height, diveGroup, position, dd) VALUES ('Forward Dive','101',3,'Forward','A',1.6);
