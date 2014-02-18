@@ -106,7 +106,7 @@
               <td>{{dive[3]|striptags}}</td>
               <td>{{dive[4]|striptags}}</td>
               <td>{{dive[5]|striptags}}</td>
-              <td><input type="text" class="form-control" name="dive{{loop.index}}" placeholder="10" value="{{dive[6]|striptags}}"></td>
+              <td><input type="text" class="form-control" name="dive{{loop.index}}" placeholder="10" {% if dive[6] %}value="{{dive[6]|striptags}}"{% endif %}></td>
             </tr>
           {% endfor %}
         </tbody>
