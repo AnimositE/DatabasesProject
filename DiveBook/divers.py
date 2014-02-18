@@ -55,6 +55,6 @@ def editprofile():
     #doabledives = db.getDoableDivesName(diverid)
     meets = [['Home Meet'], ['Franklin'], ['Washington']]
     #meets = db.getMeetsOfDiver(diverid)
-    return render_template('profile.html',profile=profile, doabledives=doabledives, meets=meets)
+    return render_template('profileedit.html',profile=profile, doabledives=doabledives, meets=meets)
 
 
