@@ -104,7 +104,7 @@ class Database:
     def editDiveSheet(self, sheetid, title, dives, diverid):
         self.cursor.execute("UPDATE DiveSheets SET name=%s WHERE Divesheets.id=%s;",[title, sheetid])
         for dive in dives:
-            self.cursor.execute("UPDATE Scores SET diveID=%s WHERE sheetID =%s AND row = %s;",[dive[1],sheet[0],dive[0]])
+            self.cursor.execute("UPDATE Scores SET diveID=%s WHERE sheetID =%s AND row = %s;",[dive[1],sheetid,dive[0]])
         self.conn.commit()
 
     def editMeetOfDiveSheet(self, id, meet):
