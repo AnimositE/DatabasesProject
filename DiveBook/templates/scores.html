@@ -80,12 +80,11 @@
     </div>
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="container">
-      <form>
+      <form action="/schools/scoresheet/{{sheet[0]}}" method="POST">
         <h1>{{sheet[1]|striptags}}</h1>
         <ul class="list-group">
           <li class="list-group-item">Meet: {{sheet[2]|striptags}}</li>
         </ul>
-      </form>
       <table class="table table-condensed table-bordered">
         <thead>
           <tr>
@@ -107,13 +106,14 @@
               <td>{{dive[3]|striptags}}</td>
               <td>{{dive[4]|striptags}}</td>
               <td>{{dive[5]|striptags}}</td>
-             <td><input type="text" class="form-control" name="dive{{loop.index + 1}}" placeholder="10"></td>
+              <td><input type="text" class="form-control" name="dive{{loop.index}}" placeholder="10" value="{{dive[6]|striptags}}"></td>
             </tr>
           {% endfor %}
         </tbody>
       </table>
       <ul class="list-group"></ul>
-      <a class="btn btn-primary" href="/divesheets/{{sheet[0]}}/edit">Edit</a> <a class="btn btn-primary" href="/divesheets/">Back</a>
+      <button class="btn btn-primary" type="submit">Save</button> <a class="btn btn-primary" href="/schools/">Back</a> {% if message %}<span class="label label-danger">{{ message }}</span>{% endif %}
+      </form>
       <div class="row"></div>
       <hr>
       <footer>

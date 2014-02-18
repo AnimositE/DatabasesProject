@@ -100,22 +100,25 @@ def editDiveSheet(id):
 def editScoresOfDiveSheet(id):
 	if 'school' not in session:
 		return redirect(url_for('schools'))
-	message = ''
-	sheet = [[1,'My Super Awesome Dive Sheet',''],]
+	message = ""
+	sheet = [[1,'My Super Awesome Dive Sheet','The Meet Name'],]
 	#sheet = db.getDiveSheet(id)
-	dives = [[1, 'A204', '1', 'Forward Dive', 'Tuck', '1.4', ''],[2, 'A204', '1', 'Hurricane Dive', 'Tuck', '1.4', '']]
+	sheet=sheet[0]
+	dives = [[1, 'A204', '1', 'Forward Dive', 'Tuck', '1.4', '20'],[2, 'A204', '1', 'Hurricane Dive', 'Tuck', '1.4', ''],[1, 'A204', '1', 'Forward Dive', 'Tuck', '1.4', '20'],[2, 'A204', '1', 'Hurricane Dive', 'Tuck', '1.4', ''],[1, 'A204', '1', 'Forward Dive', 'Tuck', '1.4', '20'],[2, 'A204', '1', 'Hurricane Dive', 'Tuck', '1.4', ''],[1, 'A204', '1', 'Forward Dive', 'Tuck', '1.4', '20'],[2, 'A204', '1', 'Hurricane Dive', 'Tuck', '1.4', ''],[1, 'A204', '1', 'Forward Dive', 'Tuck', '1.4', '20'],[2, 'A204', '1', 'Hurricane Dive', 'Tuck', '1.4', ''],]
 	#dives = getDivesInSheet(id)
 	if request.method == 'POST':
-		dives=[]
+		newdives=[]
 		# Check that every field was entered in
 		for i in range(1,11):
 			if request.form['dive'+str(i)]:
-				dives.append(request.form['dive'+str(i)]) # [row, score]
+				newdives.append(request.form['dive'+str(i)]) # [row, score]
 			else:
 				message = 'Dive ' + str(i) + ' score field cannot be empty!'
-	if not message:
-		# For each dive returned, set the score of that dive equal to the score
-		for i in range(1,11):
-			pass
-			#db.scoreDives(id,i,dives[i-1])
+		print message
+		if not message:
+			# For each dive returned, set the score of that dive equal to the score
+			for i in range(1,11):
+				#db.scoreDives(id,i,newdives[i-1])
+				pass
+			return redirect(url_for('schools'))
 	return render_template('scores.html', sheet=sheet, dives=dives, message=message)
