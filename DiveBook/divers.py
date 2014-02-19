@@ -35,7 +35,7 @@ def viewprofile():
         return redirect(url_for('index'))
     diverid = session['id']
     profile = [['Thelonius','Coco Diver', 'coco@ilovediving.com', '2', 'Rose-Hulman', 'I', 'Back Tuck'],]
-    doabledives = [['Forward Dive'], ['Back Tuck'], ['Front 1 1/2']]
+    doabledives = [['Forward Dive',1], ['Back Tuck',2], ['Front 1 1/2',4]]
     profile = db.getDiverProfile(diverid)
     profile = profile[0]
     doabledives = db.getDoableDivesName(diverid)
