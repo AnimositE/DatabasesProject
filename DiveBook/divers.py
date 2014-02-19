@@ -61,11 +61,11 @@ def editprofile():
     diverid = session['id']
     profile = [['Thelonius','Coco Diver', 'coco@ilovediving.com', '2', 'Rose-Hulman', 'I', 'Back Tuck'],]
     doabledives = [['Forward Dive', '1'], ['Back Tuck', '2'], ['Front 1 1/2', '3']]
-    #profile = db.getDiverProfile(diverid)
+    profile = db.getDiverProfile(diverid)
     profile = profile[0]
-    #doabledives = db.getDoableDivesName(diverid)
+    doabledives = db.getDoableDivesName(diverid)
     meets = [['Home Meet'], ['Franklin'], ['Washington']]
-    #meets = db.getMeetsOfDiver(diverid)
+    meets = db.getMeetsOfDiver(diverid)
     return render_template('profileedit.html',profile=profile, doabledives=doabledives, meets=meets, message=message)
 
 
