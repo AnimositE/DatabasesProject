@@ -123,7 +123,7 @@
             </div>
             <ul class="list-group">
               {% for dive in doabledives %}
-              {% if dive[0]==profile[6] %}
+              {% if dive[1]==profile[6] %}
               <li class="list-group-item">{{dive[0]}} is my favourite dive</li>
               {% else %}
               <li class="list-group-item">{{dive[0]}}</li>
