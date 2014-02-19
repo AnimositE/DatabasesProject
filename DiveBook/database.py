@@ -18,6 +18,9 @@ class Database:
         self.cursor = self.conn.cursor()
 
     # DIVERS ------------------------------------------------------------------------
+    def editprofile(self, newfname, newlname, newage, newdive, diverid):
+        self.cursor.execute("UPDATE Profiles SET fName = %s, lName = %s, age = %s, favoriteDive = %s WHERE diverID = %s;", [newfname, newlname,newage,newdive,diverid])
+        self.conn.commit()
 
     def getDivers(self):
         self.cursor.execute("SELECT Divers.id, fName, lName, name FROM Divers, Profiles, Schools WHERE Divers.id = Profiles.diverID AND Profiles.schoolID = Schools.id;")
