@@ -47,6 +47,7 @@ def viewprofile():
 def editprofile():
     if 'id' not in session:
         return redirect(url_for('index'))
+    message = ""
     if request.method == 'POST':
         newfname = request.form['fname']
         newlname = request.form['lname']
