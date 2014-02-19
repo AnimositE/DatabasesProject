@@ -46,7 +46,7 @@ def viewprofile():
 @app.route('/manageprofile/',methods=['GET','POST'])
 def editprofile():
     if 'id' not in session:
-        return redirt(url_for('index'))
+        return redirect(url_for('index'))
     diverid = session['id']
     profile = [['Thelonius','Coco Diver', 'coco@ilovediving.com', '2', 'Rose-Hulman', 'I', 'Back Tuck'],]
     doabledives = [['Forward Dive'], ['Back Tuck'], ['Front 1 1/2']]
