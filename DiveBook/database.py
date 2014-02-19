@@ -32,7 +32,7 @@ class Database:
         return self.cursor.fetchall()
 
     def getDoableDivesName(self, diverid):
-        self.cursor.execute("SELECT name FROM Doable JOIN Dives ON diveID = id WHERE diverID = %s;",[diverid])
+        self.cursor.execute("SELECT name, diveID FROM Doable JOIN Dives ON diveID = id WHERE diverID = %s;",[diverid])
         return self.cursor.fetchall()
 
     def getMeetsOfDiver(self,diverid):
