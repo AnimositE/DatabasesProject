@@ -139,6 +139,9 @@
             </div>
           </div>
           <button type="submit" class="btn btn-primary">Submit Changes</button>
+          {% if message="Sorry, fields can't be left blank. Please retry."%}
+          <label>{{message|striptags}}</label>
+          {% endif %}
         </div>
       </div>
       <!-- Example row of columns -->
