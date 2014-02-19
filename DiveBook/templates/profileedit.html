@@ -139,7 +139,7 @@
             </div>
           </div>
           <button type="submit" class="btn btn-primary">Submit Changes</button>
-          {% if message="Sorry, fields can't be left blank. Please retry."%}
+          {% if message %}
           <label>{{message|striptags}}</label>
           {% endif %}
         </div>
