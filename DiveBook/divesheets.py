@@ -113,7 +113,7 @@ def editScoresOfDiveSheet(id):
 		for i in range(1,11):
 			if request.form['dive'+str(i)]:
 				newdives.append(request.form['dive'+str(i)]) # [row, score]
-				total += request.form['dive'+str(i)]
+				total += float(request.form['dive'+str(i)])
 			else:
 				message = 'Dive ' + str(i) + ' score field cannot be empty!'
 		print message
