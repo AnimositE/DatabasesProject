@@ -6,7 +6,7 @@ db = ""
 db = Database()
 
 app = Flask(__name__)
-app.config.update(DEBUG = True,)
+app.config.update(DEBUG = False,)
 app.secret_key = 'A0Zz98j/3yX R~XHH!?1N]LWX/,?RT'  #Temp secret
 
 
