@@ -78,6 +78,7 @@ class Database:
 
     def schoolInfo(self, schoolid):
         self.cursor.execute("SELECT name, division FROM Schools WHERE id=%s;",[schoolid])
+        return self.cursor.fetchall()[0]
         
 
     def scoreDives(self, sheetid, row, score):
