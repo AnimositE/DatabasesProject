@@ -85,6 +85,10 @@ class Database:
         self.cursor.execute("UPDATE Scores SET score=%s  WHERE sheetID=%s AND row=%s;",[score,sheetid,row])
         self.conn.commit()
 
+    def finalScore(self, id, total):
+        self.cursor.execute("UPDATE DiveSheets SET finalScore=%s WHERE id=%s;",[total,id])
+        self.conn.commit()
+
 
     # --------------------------------------------------------------------------------
 

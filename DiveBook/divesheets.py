@@ -108,10 +108,12 @@ def editScoresOfDiveSheet(id):
 	dives = db.getDivesInSheet(id)
 	if request.method == 'POST':
 		newdives=[]
+		total = 0
 		# Check that every field was entered in
 		for i in range(1,11):
 			if request.form['dive'+str(i)]:
 				newdives.append(request.form['dive'+str(i)]) # [row, score]
+				total += int(request.form['dive'+str(i)])
 			else:
 				message = 'Dive ' + str(i) + ' score field cannot be empty!'
 		print message
@@ -120,5 +122,6 @@ def editScoresOfDiveSheet(id):
 			for i in range(1,11):
 				db.scoreDives(id,i,newdives[i-1])
 				pass
+			db.finalScore(id,total)
 			return redirect(url_for('schools'))
 	return render_template('scores.html', sheet=sheet, dives=dives, message=message)
